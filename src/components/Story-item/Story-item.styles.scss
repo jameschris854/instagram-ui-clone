@@ -1,0 +1,15 @@
+.item-container{
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+        min-height: 88px;
+    .profile-pic{
+        margin-left: 20px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      img{
+        width: 110%;
+        height: 110%;
+      }
+}

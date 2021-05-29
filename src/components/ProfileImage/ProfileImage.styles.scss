@@ -1,0 +1,48 @@
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  border: solid 2px rgb(255, 255, 255);
+  position: relative;
+  &.none{
+    &:before {
+      display: none;
+    }
+  }
+  &.active {
+    box-shadow: 0 0px 0px 2px green;
+  }
+  &.in-active {
+    box-shadow: 0 0px 0px 2px rgb(255, 8, 8);
+
+    
+  }
+
+  &.large {
+    width: 60px;
+    height: 60px;
+    // &:before {
+    //   left: -1.5px;
+    //   top:-1.5px;
+    // }
+  }
+  img {
+    width: 120%;
+    height: 120%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  // &:before {
+  //   content: "";
+  //   position: absolute;
+  //   width: 95%;
+  //   height: 95%;
+  //   top: -2.5px;
+  //   left: -2px;
+  //   border: solid 3px white;
+  //   border-radius: 50%;
+  // }
+}

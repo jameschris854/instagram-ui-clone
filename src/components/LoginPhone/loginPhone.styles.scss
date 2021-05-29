@@ -1,0 +1,17 @@
+.phone-container {
+
+  position: relative;
+    width: fit-content;
+    height: fit-content;
+  .phones {
+    position: static;
+  }
+  .screenShot {
+    position: absolute;
+    left: 151px;
+    top: 99px;
+    z-index: 1;
+    width: auto;
+    animation:ease 1s;
+  }
+}
