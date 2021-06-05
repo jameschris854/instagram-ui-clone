@@ -5,6 +5,7 @@ import "./loginPhone.styles.scss";
 
 export const LoginPhone = () => {
   const [backgroundNo,changeBackgroundNo] = useState(1)
+  
    setTimeout(() => {
     changeBackgroundNo(backgroundNo < 5 ? backgroundNo + 1 : 1);
   }, 2000);

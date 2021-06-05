@@ -1,12 +1,25 @@
-:root{
-  $border-color: #dbdbdb;
 
+:root{
+  --borderColor:#dbdbdb;
+  --background: #fafafa;
+  --secondary-background:white;
+  --primary-color:black ;
+  --secondary-color:rgb(65, 65, 65);
+  
+  // --borderColor:#353535;
+  // --background: #000000;
+  // --secondary-background:rgb(0, 0, 0);
+  // --primary-color:rgb(255, 255, 255);
+  // --secondary-color: rgb(219, 219, 219);
 }
 .App {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #fafafa;
+  background-color: var(--background);
+}
+a{
+  color: var(--primary-color);
 }
 
 // .App-logo {

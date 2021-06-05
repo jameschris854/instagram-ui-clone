@@ -1,8 +1,28 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+  justify-content: center;
+  align-items: center;
+  .add-post-btn {
+    display: none;
+    border: solid 1px rgb(255, 183, 195);
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
-.main-container{
-    display: flex;
-    flex-direction: column;
-    padding-top: 80px;
-    justify-content: center;
-    align-items: center;
+    color: rgb(255, 183, 195);
+    &:hover{
+        color: rgb(255, 255, 255);
+        border: solid 1px rgb(255, 183, 195);
+        background-color: rgb(255, 36, 83);
+    }
+    &.show {
+      display: block;
+    }
+    i {
+      padding: 5px;
+      color: inherit;
+    }
+  }
 }

@@ -1,0 +1,15 @@
+.PostForm-container{
+    color: var(--primary-color);
+    margin-top: 20px;
+    border: solid 1px var(--borderColor);
+    background-color: var(--secondary-background);
+    padding: 20px;
+    margin-bottom: 20px;
+    .postForm-title{
+        width: 100%;
+      display: flex;
+     justify-content: space-around;
+     align-items: center;
+     margin-bottom: 10px;
+    }
+}

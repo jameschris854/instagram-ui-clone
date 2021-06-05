@@ -1,0 +1,108 @@
+.config-container-wrapper-big {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  .config-container-wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    .config-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 55%;
+      height: 500px;
+      margin-top: 80px;
+      border: solid 1px var(--borderColor);
+      background-color: white;
+      text-align: left;
+      .config-catagories-container {
+        display: flex;
+        flex-direction: column;
+        border-right: var(--borderColor) 1px solid;
+        height: 100%;
+        .config-catagories {
+          text-align: center;
+          padding: 10px;
+          &.active {
+            border-left: rgb(61, 61, 61) solid 2px;
+          }
+        }
+      }
+      .update-profile-container {
+        display: none;
+        width: 70%;
+        margin-left: 10px;
+        &.show {
+          display: block;
+        }
+      }
+      .update-security-container {
+        display: none;
+        width: 70%;
+        margin-left: 10px;
+        &.show {
+          display: block;
+        }
+      }
+    }
+    form {
+      display: inline-grid;
+      grid-gap: 10px;
+      grid-template-columns: 50% 50%;
+      align-items: center;
+      padding-top: 20px;
+      text-align: left;
+      .config-input-label{
+        font-size: 13px;
+        color: var(--secondary-color);
+
+      }
+      .config-input {
+        outline: none;
+        border: solid 1px var(--borderColor);
+        margin: 20px 0px;
+        width: 80%;
+        color: var(--secondary-color);
+      }
+      .config-user{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left;
+        width: 100%;
+        font-weight: 500;
+        padding-bottom: 20px;
+        margin-left: 30px;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        .proPic-container {
+          width: 60px;
+          height: 50px;
+        }
+      }
+      .config-button{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        border-radius: 5px;
+        padding: 5px 10px;
+        width: fit-content;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        border: solid 1px var(--borderColor);
+        cursor: pointer;
+        font-size: 13px;
+        &:hover{
+          filter:opacity(0.8);
+        }
+      }
+    }
+  }
+}

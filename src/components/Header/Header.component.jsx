@@ -1,9 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import { ProfileImage } from "../ProfileImage/ProfileImage.component";
+import { Link } from 'react-router-dom'
+
 import './Header.styles.scss'
 
 
-const Header = () => (
+const Header = ({currentUser}) => (
   <div className="header-container">
     <div className="logo-container">
       <img src='/logo.png' alt="" />
@@ -13,13 +16,19 @@ const Header = () => (
       <span><i className="fas fa-search"></i>Search</span>
     </div>
     <div className="header-icons">
-      <i className="fas fa-home"></i>
+      <Link to='/home'><i className="fas fa-home"></i></Link> 
       <i className="fab fa-facebook-messenger"></i>
       <i className="far fa-compass"></i>
       <i className="far fa-heart"></i>
-      <ProfileImage state='none' image='https://qph.fs.quoracdn.net/main-qimg-20df28f3b31895e56cba6dbc0515c635'/>
+      <Link to={`/profile/${currentUser.id}`}>
+      <ProfileImage state='none' image={currentUser.photo} size='medium' style={{height:'39px',width:'39px',marginLeft:'10px'}}/>
+      </Link>
     </div>
   </div>
 );
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser:state.user.currentUser.user
+})
+
+export default connect(mapStateToProps)(Header);

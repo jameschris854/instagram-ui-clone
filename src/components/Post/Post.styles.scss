@@ -1,103 +1,118 @@
 $border-color: #dbdbdb;
 @mixin hideScrollbar {
-    // https://blogs.msdn.microsoft.com/kurlak/2013/11/03/hiding-vertical-scrollbars-with-pure-css-in-chrome-ie-6-firefox-opera-and-safari/
-    // There is a CSS rule that can hide scrollbars in Webkit-based browsers (Chrome and Safari).
-    &::-webkit-scrollbar {
-      width: 0 !important
-    }
-    // There is a CSS rule that can hide scrollbars in IE 10+.
-    -ms-overflow-style: none;
-    
-    // Use -ms-autohiding-scrollbar if you wish to display on hover.
-    // -ms-overflow-style: -ms-autohiding-scrollbar;
-    
-    // There used to be a CSS rule that could hide scrollbars in Firefox, but it has since been deprecated.
-    scrollbar-width: none;
+  // https://blogs.msdn.microsoft.com/kurlak/2013/11/03/hiding-vertical-scrollbars-with-pure-css-in-chrome-ie-6-firefox-opera-and-safari/
+  // There is a CSS rule that can hide scrollbars in Webkit-based browsers (Chrome and Safari).
+  &::-webkit-scrollbar {
+    width: 0 !important;
   }
-.post-wrapper{
+  // There is a CSS rule that can hide scrollbars in IE 10+.
+  -ms-overflow-style: none;
+
+  // Use -ms-autohiding-scrollbar if you wish to display on hover.
+  // -ms-overflow-style: -ms-autohiding-scrollbar;
+
+  // There used to be a CSS rule that could hide scrollbars in Firefox, but it has since been deprecated.
+  scrollbar-width: none;
+}
+.post-wrapper {
   color: rgb(70, 70, 70);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    border: solid 1px $border-color;
-    margin-bottom: 60px;
-    width: 615px;
-    height: fit-content;
-    border-radius: 3px;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    @include hideScrollbar();
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: solid 1px var(--borderColor);
+  margin-bottom: 60px;
+  width: 615px;
+  height: fit-content;
+  border-radius: 3px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  @include hideScrollbar();
 
-    .header{
-      display:flex;
-      width: 100%;
-      align-items: center;
-      padding: 16px 0px;
-      .profile-pic {
-        margin-left: 10px;
-      }
-      span{
-        margin-left: 20px;
-      }
-      i{
-        margin-left: 27rem;
+  .header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 12px 0px ;
+    .profile-pic {
+      margin-left: 10px;
+    }
+    span {
+      margin-left: 5px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    i {
+      font-size: 13px;
+      margin-left: 27rem;
+    }
+  }
+  .image {
+    min-width: 614px;
+    min-height: 614px;
+    max-height: 700px;
+    position: relative;
+    background-color: rgb(68, 68, 68);
+    overflow: hidden;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .reaction {
+    display: flex;
+    width: 100%;
+    font-size: 25px;
+    padding: 10px 0px;
+    i {
+      margin-left: 10px;
+    }
+    .fa-bookmark {
+      margin-left: auto;
+      margin-right: 10px;
+      &:hover {
+        color: rgb(119, 119, 119);
       }
     }
-    .image{
-      min-width: 614px;
-      min-height: 614px;
-      max-height: 700px;
-      position: relative;
-      background-color: rgb(68, 68, 68);
-      overflow: hidden;
-      img{
-        max-width: 100%;
-        max-height: 100%;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-       
-      }
+  }
+  .post-caption{
+    height: 32px;
+    align-self: flex-start;
+    border-top: solid 1px var(--borderColor);
+    width: 100%;
+    margin-left: auto;
+    text-align: left;
+    padding: 10px 0px;
+    padding-left: 10px;
+  }
+  .comment-section {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    border-top: solid 1px var(--borderColor);
+    align-items: center;
+    padding-top: 15px;
+    height: 50px;
+    input {
+      justify-self: flex-start;
+      margin-left: 25px;
+      border: none;
+      outline: none;
+      height: 18px !important;
+      background-color: var(--background);
+      color: var(--primary-color);
     }
-    .reaction{
-      display: flex;
-      width: 100%;
+    i {
       font-size: 25px;
-      padding:10px 0px;
-      i{
-        margin-left: 10px;
-      }
-      .fa-bookmark{
-        margin-left: auto;
-        margin-right: 10px;
-        &:hover{
-          color: rgb(119, 119, 119);
-        }
-      }
+      margin-left: 20px;
     }
-    .comment-section{
-      display: flex;
-      width: 100%;
-      justify-content: flex-start;
-      border-top:solid 1px rgb(214, 214, 214);
-      align-items: center;
-      padding-top: 15px;
-      input{
-        justify-self: flex-start;
-        margin-left: 25px;
-        border: none;
-        outline: none;
-        height: 18px !important;
-      }
-      i{
-        font-size: 30px;
-        margin-left: 20px;
-      }
-      span{
-        margin-left: auto;
-        margin-right: 20px;
-        color: rgb(112, 112, 255);
-      }
+    span {
+      margin-left: auto;
+      margin-right: 20px;
+      color: rgb(112, 112, 255);
     }
+  }
 }

@@ -3,13 +3,14 @@
     flex-direction: column;
     min-width: 100px;
         min-height: 88px;
+        color: var(--primary-color);
     .profile-pic{
         margin-left: 20px;
         border-radius: 50%;
         overflow: hidden;
       }
       img{
-        width: 110%;
-        height: 110%;
+        width: 100%;
+        height: 100%;
       }
 }

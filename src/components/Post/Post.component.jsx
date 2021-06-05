@@ -2,11 +2,11 @@ import React from "react";
 import { ProfileImage } from "../ProfileImage/ProfileImage.component";
 import "./Post.styles.scss";
 
-export const Post = ({imageUrl,proImage,state}) => (
+export const Post = ({ imageUrl, proImage, state, userName, caption }) => (
   <div className="post-wrapper">
     <div className="header">
-      <ProfileImage image={proImage} state={state}/>
-      <span>userName</span> 
+      <ProfileImage image={proImage} state={state} size={"medium"} />
+      <span>{userName}</span>
       <i className="fas fa-ellipsis-h"></i>
     </div>
     <div className="image">
@@ -18,9 +18,10 @@ export const Post = ({imageUrl,proImage,state}) => (
       <i className="far fa-paper-plane"></i>
       <i className="far fa-bookmark"></i>
     </div>
+    <div className="post-caption">C.C : {caption}</div>
     <div className="comment-section">
       <i className="far fa-grin-alt"></i>
-      <input type="text" placeholder="Add a comment…"/>
+      <input type="text" placeholder="Add a comment…" />
       <span>Post</span>
     </div>
   </div>

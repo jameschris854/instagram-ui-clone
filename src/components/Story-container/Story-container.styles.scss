@@ -18,7 +18,7 @@ $border-color: #dbdbdb;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    border: solid 1px $border-color;
+    border: solid 1px var(--borderColor);
     width: 615px;
     height: 84px;
     padding: 18px 0;
@@ -26,5 +26,5 @@ $border-color: #dbdbdb;
     overflow-x: scroll;
     overflow-y: hidden;
     @include hideScrollbar();
-    background-color:#fff;
+    background-color: var(--secondary-background);
 }

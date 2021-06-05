@@ -1,9 +1,10 @@
 import React from "react";
 import "./form-input.styles.scss";
 
-const FormInput = ({handleChange, label, ...otherProps }) => (
-  <div className="group">
-    <input className="form-input" onChange={handleChange} {...otherProps} />
+const FormInput = ({handleChange,label,config, ...otherProps }) => (
+  <div className={`group ${config? 'config':''}`}>
+    <div className='label-side'>{config}</div>
+    <input className={`form-input ${config? 'config':''}`} onChange={handleChange} {...otherProps} />
     {label ? (
       <label
         className={`${

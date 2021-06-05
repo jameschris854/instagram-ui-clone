@@ -1,0 +1,20 @@
+.loginAndSignup{
+    &.active{
+        background: #0095f6;
+    }
+    .fbtn{
+        i{
+            font-size: 15px;
+        }
+    }
+  
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 8px 40px 8px 36px;
+    line-height: 18px;
+    background: #81b9df;
+    border: none;
+    height: 30px;
+    width: 274px;
+    border-radius: 2px;
+}
