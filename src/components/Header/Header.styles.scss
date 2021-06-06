@@ -51,7 +51,14 @@
         justify-content: center;
         align-items: center;
         height: 45px;
-        i{
+        a{
+          width: fit-content;
+          svg{
+            height: 20px;
+            margin-top: 4px;
+          }
+        }
+        svg{
           margin-left: 20px;
               padding-top: 7px;
         }

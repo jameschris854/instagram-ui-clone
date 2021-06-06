@@ -42,7 +42,7 @@
     left: 50%;
     transform: translateX(-50%);
 
-    background-image: url("./imagePack.png");
+    background-image: url('../../assets/images/imagePack.png');
     background-repeat: no-repeat;
     background-position-x: -230px;
     background-position-y: -47px;
@@ -59,7 +59,24 @@
       background-position-y: -70px;
       background-size: 465px;
     }
-    &.none {
+    &.black-border {
+      position: absolute;
+      margin: 0px;
+      width: 42px;
+      height: 36px;
+      top: 4px;
+      bottom: 0;
+      right: 0px;
+      left: 51%;
+      transform: translateX(-50%);
+      background-image: url('../../assets/images/imagePack.png');
+      background-repeat: no-repeat;
+      background-position-x: -174px;
+      background-position-y: -114px;
+      background-size: 250px;
+      z-index: -1;
+    }
+    &.none{
       display: none;
     }
   }

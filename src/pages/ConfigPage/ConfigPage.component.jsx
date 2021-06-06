@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import Header from "../Header/Header.component";
-import { ProfileImage } from "../ProfileImage/ProfileImage.component";
+import Header from "../../components/Header/Header.component";
+import { ProfileImage } from "../../components/ProfileImage/ProfileImage.component";
 
-import "./Config.styles.scss";
-const Config = ({ currentUser, authState }) => {
+import "./ConfigPage.styles.scss";
+
+const ConfigPage = ({ currentUser, authState }) => {
   const [cred, setCred] = useState({
     fullName: currentUser.fullName,
     userName: currentUser.userName,
@@ -14,6 +15,9 @@ const Config = ({ currentUser, authState }) => {
     currentPassword: "",
     newPassword: "",
   });
+
+  const [passwordDelAcc, setPassword] = useState("");
+
   const [tab, setTab] = useState("profile");
 
   const { fullName, userName } = cred;
@@ -24,20 +28,27 @@ const Config = ({ currentUser, authState }) => {
     const { value, name } = e.target;
     if (tab === "profile") {
       setCred((prevState) => ({ ...prevState, [name]: value }));
-      setCredSec({currentPassword: "",
-      newPassword: "",})
+      setCredSec({ currentPassword: "", newPassword: "" });
+      setPassword("");
     } else if (tab === "security") {
       setCredSec((prevState) => ({ ...prevState, [name]: value }));
       setCred({
         fullName: currentUser.fullName,
         userName: currentUser.userName,
-      })
+      });
+      setPassword("");
+    } else if (tab === "delete-account") {
+      setPassword(value);
+      setCred({
+        fullName: currentUser.fullName,
+        userName: currentUser.userName,
+      });
+      setCredSec({ currentPassword: "", newPassword: "" });
     }
   };
 
   const handleSubmitUpdateDetails = async (e) => {
     e.preventDefault();
-
     let res = await fetch("http://127.0.0.1:3000/api/v1/users", {
       method: "PATCH",
       headers: {
@@ -59,7 +70,6 @@ const Config = ({ currentUser, authState }) => {
   };
   const handleSubmitUpdatePassword = async (e) => {
     e.preventDefault();
-
     console.log("updating password");
     let res = await fetch("http://127.0.0.1:3000/api/v1/users/updatePassword", {
       method: "PATCH",
@@ -79,6 +89,26 @@ const Config = ({ currentUser, authState }) => {
     }
     console.log(updatedUser);
   };
+
+  const handleDeleteAccount = async () => {
+    console.log("deeting...");
+    let res = await fetch("http://127.0.0.1:3000/api/v1/users/", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authState.token,
+      },
+      body: JSON.stringify({
+        currentPassword: passwordDelAcc,
+      }),
+    });
+    let deletedUser = await res.json();
+    console.log(deletedUser);
+    if (deletedUser.status === "success") {
+      alert("account successfully deleted");
+    }
+  };
+  
   return (
     <div className="config-wrapper">
       <Header />
@@ -101,6 +131,14 @@ const Config = ({ currentUser, authState }) => {
                 onClick={() => setTab("security")}
               >
                 Change Password
+              </div>
+              <div
+                className={`config-catagories ${
+                  tab === "delete-account" ? "active" : ""
+                }`}
+                onClick={() => setTab("delete-account")}
+              >
+                Delete Account
               </div>
             </div>
             <div
@@ -189,6 +227,41 @@ const Config = ({ currentUser, authState }) => {
                 </div>
               </form>
             </div>
+            <div
+              className={`delete-account-container ${
+                tab === "delete-account" ? "show" : ""
+              }`}
+            >
+              <form onSubmit={handleDeleteAccount}>
+                <span className="config-user">
+                  <ProfileImage
+                    image={currentUser.photo}
+                    state={"none"}
+                    size={"small"}
+                  />
+                  {currentUser.userName}
+                </span>
+                <span className="config-input-label">CURRENT PASSWORD</span>
+                <input
+                  className="config-input"
+                  type="password"
+                  value={passwordDelAcc}
+                  onChange={handleChange}
+                  name="currentPassword"
+                  required
+                  autoComplete="off"
+                />
+                <div
+                  type="submit"
+                  onClick={handleDeleteAccount}
+                  className="config-button delete"
+                >
+                  Delete Account
+                </div>
+              </form>
+              <br />
+              <span>This action is irreversible*</span>
+            </div>
           </div>
         </div>
       </div>
@@ -201,4 +274,4 @@ const mapStateToProps = (state) => ({
   authState: state.auth.authData,
 });
 
-export default connect(mapStateToProps)(Config);
+export default connect(mapStateToProps)(ConfigPage);

@@ -14,7 +14,7 @@ export const ProfileImage = ({ size, state, image,...otherProps}) => {
             ? "active"
             : state === "none"
             ? "none"
-            : "in-active"
+            : state==='black-border'?'black-border': 'in-active'
         } `}></div>
     </div>
   );

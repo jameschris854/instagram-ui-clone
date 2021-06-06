@@ -44,8 +44,15 @@
     .settings {
       margin-top: auto;
       font-size: 25px;
-
       grid-area: settings;
+      div{
+
+        width: 25px;
+        height: 25px;
+        background-image: url('../../assets/images/imagePack.png');
+        background-repeat: no-repeat;
+        background-position: 0 -130px;
+      }
     }
     .stats {
       grid-area: stats;
@@ -76,14 +83,36 @@
   }
   .profilePage-posts-container {
     width: 500px;
-    height: auto;
+    height: 100vh;
     align-self: flex-start;
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-gap: 10px;
+    grid-row-gap: 10px;
     margin-left: 20%;
     .previewPost{
-        width: 250px;
+        width: 150px;
+        height: 200px;
+        position: relative;
+        .del-post-btn{
+        display: none;
+        }
+        &:hover{
+          img{
+
+            filter: grayscale(0.8) opacity(0.8);
+          }
+        .del-post-btn{
+          display: block;
+          position: absolute;
+          margin-top: auto;
+          margin-bottom: auto;
+          left: 50%;
+          color: red;
+          transform: translateX(-50%);
+          top: 40%;
+          font-size: 30px;
+        }
+        }
     }
     img {
       width: 100%;

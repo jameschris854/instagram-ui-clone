@@ -6,7 +6,7 @@ import { SignupPage } from "./pages/SignupPage/SignupPage.component";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.component";
-import Config from "./components/Config/Config.component";
+import ConfigPage from "./pages/ConfigPage/ConfigPage.component";
 
 function App({ authState, currentUser }) {
   console.log(currentUser);
@@ -33,7 +33,7 @@ function App({ authState, currentUser }) {
           <Route
             exact
             path={`/profile/${currentUser.id}/config`}
-            component={Config}
+            component={ConfigPage}
           />: <Redirect to='/' />
         }
       </Switch>
