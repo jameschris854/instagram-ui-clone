@@ -6,7 +6,6 @@ import noPosts from "../../assets/images/noPosts.jpg";
 import { Link } from "react-router-dom";
 
 const ProfilePage = ({ currentUser, match, authState }) => {
-  console.log(currentUser);
 
   const handlePostDelete = async (id) => {
     console.log("deleting post" + id);
@@ -23,7 +22,6 @@ const ProfilePage = ({ currentUser, match, authState }) => {
     }
     console.log(deletedPost);
   };
-  console.log(match);
   return (
     <div className="profile-page-wrapper">
       <Header />

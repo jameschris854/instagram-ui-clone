@@ -12,14 +12,21 @@
   // --primary-color:rgb(255, 255, 255);
   // --secondary-color: rgb(219, 219, 219);
 }
+
 .App {
   display: flex;
   flex-direction: column;
   text-align: center;
   background-color: var(--background);
+  scrollbar-width: thin;          /* "auto" or "thin" */
+  scrollbar-color: blue orange;   /* scroll thumb and track */
 }
+
 a{
   color: var(--primary-color);
+}
+svg{
+  fill: var(--primary-color);
 }
 
 // .App-logo {

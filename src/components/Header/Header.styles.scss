@@ -1,77 +1,117 @@
- 
-.header-container{
-    display: flex;
-    width: 100vw;
-    height: 50px;
-    background-color: var(--secondary-background);
-    justify-content: space-evenly;
-    align-items: center;
-    border-bottom:solid 1px var(--borderColor);
-    position: fixed;
-    z-index: 1;
-    .logo-container>img{
+.header-container {
+  display: flex;
+  width: 100vw;
+  height: 50px;
+  background-color: var(--secondary-background);
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: solid 1px var(--borderColor);
+  position: fixed;
+  z-index: 1;
+  .logo-container > img {
     //   -webkit-filter: invert(100%); /* Safari/Chrome */
     // filter: invert(100%);
     margin-top: 10px;
-    }
-    .input{
-      position: relative;
-      height: 28px;
-      width: 215px;
-      border:solid 1px  var(--borderColor);
+  }
+  .input {
+    position: relative;
+    height: 28px;
+    width: 215px;
+    border: solid 1px var(--borderColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background);
+    span {
+      position: absolute;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: var(--background);
-      span{
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        color: var(--secondary-color);
-        font-size: 10px;
-        font-family: monospace;
-        i{
-          margin-right: 5px;
-        }
-      }
-      input{
-        font-size: 12px;
-        outline:none;
-        border: none;
-        background: none;
+      width: 100%;
+      height: 100%;
+      color: var(--secondary-color);
+      font-size: 10px;
+      font-family: monospace;
+      i {
+        margin-right: 5px;
       }
     }
-    .header-icons{
-        color: var(--primary-color);
-        font-size: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 45px;
-        a{
-          width: fit-content;
-          svg{
-            height: 20px;
-            margin-top: 4px;
+    input {
+      font-size: 12px;
+      outline: none;
+      border: none;
+      background: none;
+    }
+  }
+  .header-icons {
+    color: var(--primary-color);
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    .header-image {
+      position: relative;
+      margin: 0;
+      .profileDropdown-container {
+        display: none;
+        width: 120px;
+        height: 100px;
+      }
+      &:hover {
+        .profileDropdown-container {
+          display: flex;
+          position: absolute;
+          flex-direction: column;
+          top: 35px;
+          left: -30px;
+          font-size: 15px;
+          .empty-span {
+            background-color: rgba(255, 0, 0, 0);
+            border: none;
+            border-bottom: solid 1px var(--borderColor);
+            height: 10%;
+          }
+          span {
+            background-color: var(--secondary-background) ;
+            height: 50%;
+            width: auto;
+            border: solid 1px var(--borderColor);
+            display: flex;
+            border-top: none;
+            justify-content: space-between;
+            padding: 0px 10px;
+            align-items: center;
+            svg {
+              margin: 0;
+              padding: 0;
+              height: auto;
+            }
           }
         }
-        svg{
-          margin-left: 20px;
-              padding-top: 7px;
-        }
-        & > div{
-          margin-left: 20px;
-        }
-        proPic-container{
-          height: 30px;
-          width: 30px;
-        }
-        .profile-pic{
-          height: 30px;
-          width: 30px;
-        }
+      }
     }
+    a {
+      width: fit-content;
+      svg {
+        height: 20px;
+        margin-top: 4px;
+      }
+    }
+    svg {
+      margin-left: 20px;
+      padding-top: 7px;
+    }
+    & > div {
+      margin-left: 20px;
+    }
+    proPic-container {
+      height: 30px;
+      width: 30px;
+    }
+    .profile-pic {
+      height: 30px;
+      width: 30px;
+    }
+  }
 }

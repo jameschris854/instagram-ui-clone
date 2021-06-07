@@ -5,9 +5,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+ 
+}
+body::-webkit-scrollbar{
+  width: 9px;
+}
+
+body::-webkit-scrollbar-track{
+  /* background: var(--secondary-background); */
+  background: var(--borderColor);
+  border:solid 1px var(--borderColor)
+}
+body::-webkit-scrollbar-thumb{
+  background:var(--secondary-color);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+

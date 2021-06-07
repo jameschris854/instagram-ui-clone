@@ -8,8 +8,22 @@ import { connect } from "react-redux";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.component";
 import ConfigPage from "./pages/ConfigPage/ConfigPage.component";
 
-function App({ authState, currentUser }) {
+function App({ authState, currentUser,theme }) {
   console.log(currentUser);
+  if(theme === 'dark'){
+    document.documentElement.style.setProperty('--borderColor','#353535');
+    document.documentElement.style.setProperty('--background','#000000');
+    document.documentElement.style.setProperty('--secondary-background','rgb(0, 0, 0)');
+    document.documentElement.style.setProperty('--primary-color','rgb(255, 255, 255)');
+    document.documentElement.style.setProperty('--secondary-color','rgb(219, 219, 219)');
+  }else{
+    document.documentElement.style.setProperty('--borderColor','#dbdbdb');
+    document.documentElement.style.setProperty('--background','#fafafa');
+    document.documentElement.style.setProperty('--secondary-background','white');
+    document.documentElement.style.setProperty('--primary-color','black');
+    document.documentElement.style.setProperty('--secondary-color','rgb(65, 65, 65)');
+
+  }
   return (
     <div className="App">
       <Switch>
@@ -44,6 +58,7 @@ function App({ authState, currentUser }) {
 const mapStateToProps = (state) => ({
   authState: state.auth.authData,
   currentUser: state.user.currentUser.user,
+  theme:state.meta.theme
 });
 
 export default connect(mapStateToProps)(App);
