@@ -149,7 +149,7 @@ const ConfigPage = ({ currentUser, authState }) => {
               <form onSubmit={handleSubmitUpdateDetails}>
                 <span className="config-user">
                   <ProfileImage
-                    image={currentUser.photo}
+                    image={'/'+currentUser.photo}
                     state={"none"}
                     size={"small"}
                   />
@@ -192,7 +192,7 @@ const ConfigPage = ({ currentUser, authState }) => {
               <form onSubmit={handleSubmitUpdatePassword}>
                 <span className="config-user">
                   <ProfileImage
-                    image={currentUser.photo}
+                    image={'/'+currentUser.photo}
                     state={"none"}
                     size={"small"}
                   />
@@ -235,7 +235,7 @@ const ConfigPage = ({ currentUser, authState }) => {
               <form onSubmit={handleDeleteAccount}>
                 <span className="config-user">
                   <ProfileImage
-                    image={currentUser.photo}
+                    image={'/'+currentUser.photo}
                     state={"none"}
                     size={"small"}
                   />

@@ -1,0 +1,26 @@
+.or-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin:10px 0px;
+    .or{
+        width: auto;
+        font-size: 12px;
+        color: rgb(131, 131, 131);
+        margin: 0px 10px ;
+        font-weight: 500;
+    }
+    .left-dash{
+        color: rgb(155, 155, 155);
+        width: auto;
+        margin-top: -4%;
+    }
+    .right-dash{
+        color: rgb(155, 155, 155);
+
+        width:auto ;
+        margin-top: -4%;
+
+    }
+}

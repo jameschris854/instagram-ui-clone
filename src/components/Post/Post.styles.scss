@@ -80,7 +80,6 @@ $border-color: #dbdbdb;
     }
   }
   .post-caption{
-    height: 32px;
     align-self: flex-start;
     border-top: solid 1px var(--borderColor);
     width: 100%;
@@ -95,7 +94,6 @@ $border-color: #dbdbdb;
     justify-content: flex-start;
     border-top: solid 1px var(--borderColor);
     align-items: center;
-    padding-top: 15px;
     height: 50px;
     input {
       justify-self: flex-start;

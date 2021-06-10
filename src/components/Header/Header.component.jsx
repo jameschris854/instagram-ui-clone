@@ -6,12 +6,14 @@ import { useHistory } from "react-router-dom";
 
 import "./Header.styles.scss";
 import { setNavbarTab, setTheme } from "../../redux/meta/meta.action";
+import { setAuthState } from "../../redux/auth/auth.action";
 const Header = ({
   currentUser,
   currentTheme,
   setTheme,
   setTab,
   currentTab,
+  setAuth,
 }) => {
   let history = useHistory();
   return (
@@ -37,7 +39,7 @@ const Header = ({
         <Link onClick={() => setTab("home")} to="/home">
           <svg
             aria-label="Home"
-            class="_8-yf5 "
+            className="_8-yf5 "
             fill="--primary-color"
             height="22"
             viewBox="0 0 48 48"
@@ -48,7 +50,7 @@ const Header = ({
         </Link>
         <svg
           aria-label="Messenger"
-          class="_8-yf5 "
+          className="_8-yf5 "
           fill="--primary-color"
           height="22"
           viewBox="0 0 48 48"
@@ -58,21 +60,21 @@ const Header = ({
         </svg>
         <svg
           aria-label="Find People"
-          class="_8-yf5 "
+          className="_8-yf5 "
           fill="--primary-color"
           height="22"
           viewBox="0 0 48 48"
           width="22"
         >
           <path
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M24 0C10.8 0 0 10.8 0 24s10.8 24 24 24 24-10.8 24-24S37.2 0 24 0zm0 45C12.4 45 3 35.6 3 24S12.4 3 24 3s21 9.4 21 21-9.4 21-21 21zm10.2-33.2l-14.8 7c-.3.1-.6.4-.7.7l-7 14.8c-.3.6-.2 1.3.3 1.7.3.3.7.4 1.1.4.2 0 .4 0 .6-.1l14.8-7c.3-.1.6-.4.7-.7l7-14.8c.3-.6.2-1.3-.3-1.7-.4-.5-1.1-.6-1.7-.3zm-7.4 15l-5.5-5.5 10.5-5-5 10.5z"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           ></path>
         </svg>
         <svg
           aria-label="Activity Feed"
-          class="_8-yf5 "
+          className="_8-yf5 "
           fill="--primary-color"
           height="22"
           viewBox="0 0 48 48"
@@ -84,41 +86,49 @@ const Header = ({
           <div className="image-border">
             <ProfileImage
               state={`${currentTab === "profile" ? "black-border" : "none"}`}
-              image={currentUser.photo}
+              image={'/'+currentUser.photo}
               size="medium"
               style={{ height: "39px", width: "39px", marginLeft: "10px" }}
             />
           </div>
           <div className="profileDropdown-container">
-            <span class="empty-span"></span>
+            <span className="empty-span"></span>
             <span onClick={() => setTheme(currentTheme)}>
               theme
               <i
-                class={`fas fa-toggle-${
+                className={`fas fa-toggle-${
                   currentTheme === "dark" ? "off" : "on"
                 }`}
               ></i>
             </span>
             <span onClick={() => history.push(`/profile/${currentUser.id}`)}>
               profile
-              <i class="far fa-user-circle"></i>
+              <i className="far fa-user-circle"></i>
             </span>
-            <span onClick={() => history.push(`/profile/${currentUser.id}/config`)}>
+            <span
+              onClick={() => history.push(`/profile/${currentUser.id}/config`)}
+            >
               settings
               <svg
                 aria-label="Options"
-                class="_8-yf5 "
+                className="_8-yf5 "
                 fill="--primary-color"
                 height="15"
                 viewBox="0 0 48 48"
-                width="24"
+                width="15"
               >
                 <path
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                   d="M46.7 20.6l-2.1-1.1c-.4-.2-.7-.5-.8-1-.5-1.6-1.1-3.2-1.9-4.7-.2-.4-.3-.8-.1-1.2l.8-2.3c.2-.5 0-1.1-.4-1.5l-2.9-2.9c-.4-.4-1-.5-1.5-.4l-2.3.8c-.4.1-.8.1-1.2-.1-1.4-.8-3-1.5-4.6-1.9-.4-.1-.8-.4-1-.8l-1.1-2.2c-.3-.5-.8-.8-1.3-.8h-4.1c-.6 0-1.1.3-1.3.8l-1.1 2.2c-.2.4-.5.7-1 .8-1.6.5-3.2 1.1-4.6 1.9-.4.2-.8.3-1.2.1l-2.3-.8c-.5-.2-1.1 0-1.5.4L5.9 8.8c-.4.4-.5 1-.4 1.5l.8 2.3c.1.4.1.8-.1 1.2-.8 1.5-1.5 3-1.9 4.7-.1.4-.4.8-.8 1l-2.1 1.1c-.5.3-.8.8-.8 1.3V26c0 .6.3 1.1.8 1.3l2.1 1.1c.4.2.7.5.8 1 .5 1.6 1.1 3.2 1.9 4.7.2.4.3.8.1 1.2l-.8 2.3c-.2.5 0 1.1.4 1.5L8.8 42c.4.4 1 .5 1.5.4l2.3-.8c.4-.1.8-.1 1.2.1 1.4.8 3 1.5 4.6 1.9.4.1.8.4 1 .8l1.1 2.2c.3.5.8.8 1.3.8h4.1c.6 0 1.1-.3 1.3-.8l1.1-2.2c.2-.4.5-.7 1-.8 1.6-.5 3.2-1.1 4.6-1.9.4-.2.8-.3 1.2-.1l2.3.8c.5.2 1.1 0 1.5-.4l2.9-2.9c.4-.4.5-1 .4-1.5l-.8-2.3c-.1-.4-.1-.8.1-1.2.8-1.5 1.5-3 1.9-4.7.1-.4.4-.8.8-1l2.1-1.1c.5-.3.8-.8.8-1.3v-4.1c.4-.5.1-1.1-.4-1.3zM24 41.5c-9.7 0-17.5-7.8-17.5-17.5S14.3 6.5 24 6.5 41.5 14.3 41.5 24 33.7 41.5 24 41.5z"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                 ></path>
               </svg>
+            </span>
+            <span
+              onClick={() => setAuth({ isAuthenticated: false, token: null })}
+            >
+              Logout
+              <i className="fas fa-sign-out-alt"></i>
             </span>
           </div>
         </div>
@@ -136,6 +146,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setTheme: (theme) => dispatch(setTheme(theme)),
   setTab: (tab) => dispatch(setNavbarTab(tab)),
+  setAuth: (auth) => dispatch(setAuthState(auth)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

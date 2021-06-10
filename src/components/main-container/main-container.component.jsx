@@ -14,7 +14,7 @@ const MainContainer = () => {
     <div className="main-container">
       <StoryContainer />
       <div className={`add-post-btn  ${postForm==='show'?'':'show'}`} onClick={handlePostFormToggle}>
-        <i class="fas fa-plus"></i>
+        <i className="fas fa-plus"></i>
       </div>
       <AddPostForm visibility={postForm} handleClick={handlePostFormToggle}/>
       <PostContainer />

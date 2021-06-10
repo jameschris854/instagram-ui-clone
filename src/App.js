@@ -7,12 +7,14 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.component";
 import ConfigPage from "./pages/ConfigPage/ConfigPage.component";
+import ForgotPasswordPage from './pages/ForgotPassword/ForgotPasswordPage.component'
 
 function App({ authState, currentUser,theme }) {
   console.log(currentUser);
+ 
   if(theme === 'dark'){
-    document.documentElement.style.setProperty('--borderColor','#353535');
-    document.documentElement.style.setProperty('--background','#000000');
+    document.documentElement.style.setProperty('--borderColor','#1b1b1b');
+    document.documentElement.style.setProperty('--background','#101010');
     document.documentElement.style.setProperty('--secondary-background','rgb(0, 0, 0)');
     document.documentElement.style.setProperty('--primary-color','rgb(255, 255, 255)');
     document.documentElement.style.setProperty('--secondary-color','rgb(219, 219, 219)');
@@ -24,11 +26,15 @@ function App({ authState, currentUser,theme }) {
     document.documentElement.style.setProperty('--secondary-color','rgb(65, 65, 65)');
 
   }
+
+
+
   return (
     <div className="App">
       <Switch>
         <Route exact path="/signup" component={SignupPage} />
         <Route exact path="/" component={LoginPage} />
+        <Route exact path='/ForgotAndResetPassword' component={ForgotPasswordPage} />
         <Route
           exact
           path="/home"
@@ -36,19 +42,18 @@ function App({ authState, currentUser,theme }) {
         />
         {
           currentUser?
+          
           <Route
             exact
             path={`/profile/${currentUser.id}`}
-            component={ProfilePage}
-          />: <Redirect to='/' />
+            render={() => (authState.isAuthenticated ? <ProfilePage /> : <Redirect to="/" />)}          />: <Redirect to='/' />
         }
         {
           currentUser?
           <Route
             exact
             path={`/profile/${currentUser.id}/config`}
-            component={ConfigPage}
-          />: <Redirect to='/' />
+            render={() => (authState.isAuthenticated ? <ConfigPage /> : <Redirect to="/" />)}          />: <Redirect to='/' />
         }
       </Switch>
     </div>
@@ -60,5 +65,6 @@ const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser.user,
   theme:state.meta.theme
 });
+
 
 export default connect(mapStateToProps)(App);

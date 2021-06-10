@@ -5,6 +5,7 @@ import { setAuthState } from "../../redux/auth/auth.action";
 import { setCurrentUser } from "../../redux/user/user.action";
 import { Button } from "../Button/Button.component";
 import FormInput from "../form-input/form-input.component";
+import OR from "../FormOR/FormOr.component";
 import "./LoginForm.styles.scss";
 
 const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
@@ -64,11 +65,11 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
 
     }else{
 
-      alert("login failed")
+      alert("login failed:")
 
     }
   }catch(err){
-    alert("login failed")
+    alert("login failed:"+err.message)
     console.log('error:' + err.message);
   }
   };
@@ -102,11 +103,11 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
           status={status}
         />
         {/* <button className="login-button" type='submit'>Log in</button> */}
-        _________or____________
+        <OR />
         <span className="fb">
           <i className="fab fa-facebook-square"></i> Log in with facebook
         </span>
-        <span className="forgot">forgot password?</span>
+        <span className="forgot"><Link to='/forgotAndResetPassword'>forgot password?</Link></span>
       </form>
       <div className="signup">
         <span>

@@ -89,6 +89,10 @@
     grid-template-columns: auto auto auto;
     grid-row-gap: 10px;
     margin-left: 20%;
+    .no-posts{
+      width: 400px;
+      height: auto;
+    }
     .previewPost{
         width: 150px;
         height: 200px;

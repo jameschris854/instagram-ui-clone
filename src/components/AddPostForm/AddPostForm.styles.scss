@@ -5,6 +5,13 @@
     background-color: var(--secondary-background);
     padding: 20px;
     margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    .post-preview-image{
+        width: 100%;
+    }
     .postForm-title{
         width: 100%;
       display: flex;

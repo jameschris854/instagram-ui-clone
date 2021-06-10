@@ -6,6 +6,7 @@ import { setCurrentUser } from "../../redux/user/user.action";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 import { Button } from "../Button/Button.component";
 import FormInput from "../form-input/form-input.component";
+import OR from "../FormOR/FormOr.component";
 import "./SignupForm.styles.scss";
 
 const SignupForm = ({ currentUser, setCurrentUser ,setAuthStatus}) => {
@@ -79,9 +80,7 @@ const handleChange = (e) => {
         <div className="logo-image" ></div>
         <span>Sign up to see photos and videos <br/>from your friends.</span>
         <Button buttonStyle="loginAndSignup" type="submit" buttonText={<div className='fbtn'><i className="fab fa-facebook-square"></i> log in with facebook</div> } status={true} />
-        
-        _________or____________
-
+        <OR />
         <FormInput
           name="email"
           type="email"
