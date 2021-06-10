@@ -10,7 +10,7 @@ export const Post = ({ imageUrl, proImage, state, userName, caption }) => (
       <i className="fas fa-ellipsis-h"></i>
     </div>
     <div className="image">
-      <img src={`http://localhost:3000/posts/${imageUrl}`} alt="" />
+      <img src={`${process.env.REACT_APP_SERVER_URL}img/posts/${imageUrl}`} alt="" />
     </div>
     <div className="reaction">
       <i className="far fa-heart"></i>

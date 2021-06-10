@@ -14,7 +14,9 @@ const ProfilePage = ({ currentUser, authState }) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + authState.token,
-      },
+      },body:JSON.stringify({
+        author:currentUser.id
+      })
     });
     let deletedPost = await res.json();
     if (deletedPost.state === "success") {
@@ -57,11 +59,11 @@ const ProfilePage = ({ currentUser, authState }) => {
             <img className='no-posts' src={noPosts} alt="" />
           ) : (
             currentUser.posts.map((post) => (
-              <div className="previewPost" key={post.id}>
-                <img src={process.env.REACT_APP_SERVER_URL+'posts/'+post.postImage} alt="" />
+              <div className="previewPost" key={post._id}>
+                <img src={process.env.REACT_APP_SERVER_URL+'img/posts/'+post.postImage} alt="" />
                 <i
                   className="del-post-btn far fa-trash-alt"
-                  onClick={() => handlePostDelete(post.id)}
+                  onClick={() => handlePostDelete(post._id)}
                 ></i>
               </div>
             ))

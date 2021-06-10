@@ -45,7 +45,14 @@ const AddPostForm = ({ currentUser, authState, visibility, handleClick }) => {
 
     let imageData = await response.json();
     console.log(imageData);
-    setPrevImageUrl(imageData.file);
+
+      
+
+    if(imageData.status === 'fail'){
+      alert(imageData.message)
+    }else{
+      setPrevImageUrl(imageData.file);
+    }
 
  
     // ...
@@ -81,7 +88,7 @@ const AddPostForm = ({ currentUser, authState, visibility, handleClick }) => {
         <span>Create Post</span>
         <i className="far fa-eye-slash" onClick={handleClick}></i>
       </div>
-      <img className='post-preview-image' src={`http://localhost:3000/posts/${prevImageUrl}`} alt="" />
+      <img className='post-preview-image' src={`${process.env.REACT_APP_SERVER_URL}img/posts/${prevImageUrl}`} alt="" />
       <FormInput type="file" onChange={handleFileChange} />
       <form onSubmit={handleSubmit}>
         <FormInput
