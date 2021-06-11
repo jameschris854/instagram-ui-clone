@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import FormInput from "../../components/form-input/form-input.component";
 
 import Header from "../../components/Header/Header.component";
 import { ProfileImage } from "../../components/ProfileImage/ProfileImage.component";
@@ -20,8 +21,44 @@ const ConfigPage = ({ currentUser, authState }) => {
 
   const [tab, setTab] = useState("profile");
 
+  const [prevImageUrl, setPrevImageUrl] = useState(`${currentUser.photo}`);
+
   const { fullName, userName } = cred;
   const { currentPassword, newPassword } = credSec;
+
+  const handleFileChange = async (e) => {
+    e.preventDefault();
+
+    console.log("file up");
+
+    console.log(e.target.files[0]);
+
+    let newPhoto = e.target.files[0];
+
+    const formData = new FormData();
+
+    formData.append("photo", newPhoto, newPhoto.name);
+
+    console.log(formData);
+    const response = await fetch("http://127.0.0.1:3000/api/v1/users/file", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + authState.token,
+      },
+      body: formData,
+    });
+
+    let imageData = await response.json();
+    console.log(imageData);
+
+    if (imageData.status === "fail") {
+      alert(imageData.message);
+    } else {
+      setPrevImageUrl(imageData.file);
+    }
+
+    // ...
+  };
 
   const handleChange = (e) => {
     console.log(cred);
@@ -45,6 +82,23 @@ const ConfigPage = ({ currentUser, authState }) => {
       });
       setCredSec({ currentPassword: "", newPassword: "" });
     }
+  };
+  const handleUpdateProfilePic = async (e) => {
+    e.preventDefault();
+
+    let res = await fetch("http://127.0.0.1:3000/api/v1/users", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + authState.token,
+      },
+      body: JSON.stringify({
+        photo: prevImageUrl,
+      }),
+    });
+    let updatedProfilePic = await res.json();
+    console.log(updatedProfilePic);
+    setPrevImageUrl('');
   };
 
   const handleSubmitUpdateDetails = async (e) => {
@@ -108,7 +162,7 @@ const ConfigPage = ({ currentUser, authState }) => {
       alert("account successfully deleted");
     }
   };
-  
+
   return (
     <div className="config-wrapper">
       <Header />
@@ -149,12 +203,22 @@ const ConfigPage = ({ currentUser, authState }) => {
               <form onSubmit={handleSubmitUpdateDetails}>
                 <span className="config-user">
                   <ProfileImage
-                    image={'/'+currentUser.photo}
+                    image={`${prevImageUrl}`}
                     state={"none"}
                     size={"small"}
                   />
                   {currentUser.userName}
                 </span>
+                <div className='upload-profile-file-config'>
+                  <FormInput type="file" onChange={handleFileChange} style={{margin:'0',paddingLeft:'0',paddingTop:'10px'}} />
+                </div>
+                <div
+                  type="submit"
+                  onClick={handleUpdateProfilePic}
+                  className="config-button file"
+                >
+                  Change Profile Pic
+                </div>
                 <span className="config-input-label">FULL NAME</span>
                 <input
                   className="config-input"
@@ -192,7 +256,7 @@ const ConfigPage = ({ currentUser, authState }) => {
               <form onSubmit={handleSubmitUpdatePassword}>
                 <span className="config-user">
                   <ProfileImage
-                    image={'/'+currentUser.photo}
+                    image={"/" + currentUser.photo}
                     state={"none"}
                     size={"small"}
                   />
@@ -235,7 +299,7 @@ const ConfigPage = ({ currentUser, authState }) => {
               <form onSubmit={handleDeleteAccount}>
                 <span className="config-user">
                   <ProfileImage
-                    image={'/'+currentUser.photo}
+                    image={"/" + currentUser.photo}
                     state={"none"}
                     size={"small"}
                   />
