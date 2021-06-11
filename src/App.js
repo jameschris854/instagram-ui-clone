@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.component";
 import ConfigPage from "./pages/ConfigPage/ConfigPage.component";
 import ForgotPasswordPage from './pages/ForgotPassword/ForgotPasswordPage.component'
-
+import UserProfilePage from './pages/UserProfilePage/UserProfilePage.component'
 function App({ authState, currentUser,theme }) {
   console.log(currentUser);
  
@@ -54,6 +54,13 @@ function App({ authState, currentUser,theme }) {
             exact
             path={`/profile/${currentUser.id}/config`}
             render={() => (authState.isAuthenticated ? <ConfigPage /> : <Redirect to="/" />)}          />: <Redirect to='/' />
+        }
+        {
+           currentUser?
+           <Route
+             exact
+             path={`/userprofile/:id`}
+             render={() => (authState.isAuthenticated ? <UserProfilePage /> : <Redirect to="/" />)}  />: <Redirect to='/' />
         }
       </Switch>
     </div>

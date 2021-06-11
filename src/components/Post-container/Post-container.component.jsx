@@ -4,7 +4,7 @@ import { setPostData } from "../../redux/post/post.action";
 import { Post } from "../Post/Post.component";
 import "./Post-container.styles.scss";
 
-const PostContainer = ({ postsData, fetchPosts, authState }) => {
+const PostContainer = ({ postsData, fetchPosts, authState,currentUser }) => {
   
   console.log(authState);
   
@@ -33,6 +33,8 @@ const PostContainer = ({ postsData, fetchPosts, authState }) => {
               imageUrl={post.postImage}
               proImage={post.author.photo}
               userName={post.author.userName}
+              // eslint-disable-next-line
+              userId={post.author.id == currentUser.id? null :post.author.id}
               caption={post.postCaption}
             />
           ))
@@ -44,6 +46,7 @@ const PostContainer = ({ postsData, fetchPosts, authState }) => {
 const mapStateToProps = (state) => ({
   postsData: state.posts,
   authState: state.auth.authData,
+  currentUser: state.user.currentUser.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
