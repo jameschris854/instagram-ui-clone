@@ -36,18 +36,18 @@ const Header = ({
         </span>
       </div>
       <div className="header-icons">
-        <Link onClick={() => setTab("home")} to="/home">
-          <svg
-            aria-label="Home"
-            className="_8-yf5 "
-            fill="--primary-color"
-            height="22"
-            viewBox="0 0 48 48"
-            width="22"
-          >
-            <path d="M45.3 48H30c-.8 0-1.5-.7-1.5-1.5V34.2c0-2.6-2-4.6-4.6-4.6s-4.6 2-4.6 4.6v12.3c0 .8-.7 1.5-1.5 1.5H2.5c-.8 0-1.5-.7-1.5-1.5V23c0-.4.2-.8.4-1.1L22.9.4c.6-.6 1.5-.6 2.1 0l21.5 21.5c.4.4.6 1.1.3 1.6 0 .1-.1.1-.1.2v22.8c.1.8-.6 1.5-1.4 1.5zm-13.8-3h12.3V23.4L24 3.6l-20 20V45h12.3V34.2c0-4.3 3.3-7.6 7.6-7.6s7.6 3.3 7.6 7.6V45z"></path>
-          </svg>
-        </Link>
+        <svg
+          onClick={() => {setTab("home")
+        history.push('/home')}}
+          aria-label="Home"
+          className="_8-yf5 "
+          fill="--primary-color"
+          height="22"
+          viewBox="0 0 48 48"
+          width="22"
+        >
+          <path d="M45.3 48H30c-.8 0-1.5-.7-1.5-1.5V34.2c0-2.6-2-4.6-4.6-4.6s-4.6 2-4.6 4.6v12.3c0 .8-.7 1.5-1.5 1.5H2.5c-.8 0-1.5-.7-1.5-1.5V23c0-.4.2-.8.4-1.1L22.9.4c.6-.6 1.5-.6 2.1 0l21.5 21.5c.4.4.6 1.1.3 1.6 0 .1-.1.1-.1.2v22.8c.1.8-.6 1.5-1.4 1.5zm-13.8-3h12.3V23.4L24 3.6l-20 20V45h12.3V34.2c0-4.3 3.3-7.6 7.6-7.6s7.6 3.3 7.6 7.6V45z"></path>
+        </svg>
         <svg
           aria-label="Messenger"
           className="_8-yf5 "
@@ -84,12 +84,22 @@ const Header = ({
         </svg>
         <div className="header-image">
           <div className="image-border">
-            <ProfileImage
+            {/* <ProfileImage
               state={`${currentTab === "profile" ? "black-border" : "none"}`}
               image={'/'+currentUser.photo}
               size="medium"
               style={{ height: "39px", width: "39px", marginLeft: "10px" }}
-            />
+            /> */}
+            <div className="header-image-tab">
+              <img
+                src={
+                  process.env.REACT_APP_SERVER_URL +
+                  "/img/users/" +
+                  currentUser.photo
+                }
+                alt=""
+              />
+            </div>
           </div>
           <div className="profileDropdown-container">
             <span className="empty-span"></span>
@@ -125,7 +135,7 @@ const Header = ({
               </svg>
             </span>
             <span
-            className='logout-button-dropDown'
+              className="logout-button-dropDown"
               onClick={() => setAuth({ isAuthenticated: false, token: null })}
             >
               Logout

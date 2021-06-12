@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { setPostData } from "../../redux/post/post.action";
 import { Post } from "../Post/Post.component";
+import Spinner from "../Spinner/Spinner.component";
 import "./Post-container.styles.scss";
 
 const PostContainer = ({ postsData, fetchPosts, authState,currentUser }) => {
   
   console.log(authState);
   
+
   useEffect(() => {
     async function fetchData() {
       // You can await here
@@ -25,20 +27,20 @@ const PostContainer = ({ postsData, fetchPosts, authState,currentUser }) => {
   
   return (
     <div className="post-container">
-      {postsData.posts
-        ? postsData.posts.map((post) => (
-            <Post
-              key={post.id}
-              state="active"
-              imageUrl={post.postImage}
-              proImage={post.author.photo}
-              userName={post.author.userName}
-              // eslint-disable-next-line
-              userId={post.author.id == currentUser.id? null :post.author.id}
-              caption={post.postCaption}
-            />
-          ))
-        : "loading"}
+      {!postsData.posts
+        ? <Spinner posts/>
+        :postsData.posts.map((post) => (
+          <Post
+            key={post.id}
+            state="active"
+            imageUrl={post.postImage}
+            proImage={post.author.photo}
+            userName={post.author.userName}
+            // eslint-disable-next-line
+            userId={post.author.id == currentUser.id? null :post.author.id}
+            caption={post.postCaption}
+          />
+        ))  }
     </div>
   );
 };

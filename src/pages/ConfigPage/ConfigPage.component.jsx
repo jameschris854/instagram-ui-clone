@@ -40,13 +40,16 @@ const ConfigPage = ({ currentUser, authState }) => {
     formData.append("photo", newPhoto, newPhoto.name);
 
     console.log(formData);
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/file`, {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + authState.token,
-      },
-      body: formData,
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/users/file`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + authState.token,
+        },
+        body: formData,
+      }
+    );
 
     let imageData = await response.json();
     console.log(imageData);
@@ -98,7 +101,7 @@ const ConfigPage = ({ currentUser, authState }) => {
     });
     let updatedProfilePic = await res.json();
     console.log(updatedProfilePic);
-    setPrevImageUrl('');
+    setPrevImageUrl("");
   };
 
   const handleSubmitUpdateDetails = async (e) => {
@@ -125,17 +128,20 @@ const ConfigPage = ({ currentUser, authState }) => {
   const handleSubmitUpdatePassword = async (e) => {
     e.preventDefault();
     console.log("updating password");
-    let res = await fetch(`${process.env.REACT_APP_API_URL}/users/updatePassword`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + authState.token,
-      },
-      body: JSON.stringify({
-        currentPassword,
-        newPassword,
-      }),
-    });
+    let res = await fetch(
+      `${process.env.REACT_APP_API_URL}/users/updatePassword`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + authState.token,
+        },
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      }
+    );
     let updatedUser = await res.json();
 
     if (updatedUser.status === "success") {
@@ -209,8 +215,16 @@ const ConfigPage = ({ currentUser, authState }) => {
                   />
                   {currentUser.userName}
                 </span>
-                <div className='upload-profile-file-config'>
-                  <FormInput type="file" onChange={handleFileChange} style={{margin:'0',paddingLeft:'0',paddingTop:'10px'}} />
+                <div className="upload-profile-file-config">
+                  <FormInput
+                    type="file"
+                    onChange={handleFileChange}
+                    style={{
+                      margin: "0",
+                      paddingLeft: "0",
+                      paddingTop: "10px",
+                    }}
+                  />
                 </div>
                 <div
                   type="submit"

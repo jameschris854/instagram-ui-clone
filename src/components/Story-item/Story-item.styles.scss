@@ -1,15 +1,23 @@
+$container-width:70px;
+
+
 .item-container {
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: $container-width;
   height: 88px;
-  overflow: hidden;
   color: var(--primary-color);
+  margin-left: 12px;
   @media screen and (max-width:500px) {
     height: fit-content;
+    margin-left: 2px;
+    width: 60px;
+
 }
   .name {
     font-size: 12px;
+    width: $container-width;
+    overflow: hidden;
     @media screen and (max-width:800px) {
       font-size: 10px;
     }
@@ -20,11 +28,11 @@
   }
 
   .profile-pic {
-    margin-left: 20px;
     border-radius: 50%;
     overflow: hidden;
     @media screen and (max-width:500px) {
       margin-left: 10px;
+      width: 60px;
     }
   }
   img {

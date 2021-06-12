@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { StoryItem } from "../Story-item/Story-item.component";
+import Spinner from '../Spinner/Spinner.component'
 import "./Story-container.styles.scss";
 
 const StoryContainer = ({ authState }) => {
@@ -22,9 +23,13 @@ const StoryContainer = ({ authState }) => {
   return (
     <div className="story-container">
       {!userList[0]
-        ? "loading"
+        ? <Spinner stories/>
         : userList.map((user) => (
-            <StoryItem state="active" proImage={user.photo} username={user.userName} />
+            <StoryItem
+              state="active"
+              proImage={user.photo}
+              username={user.userName}
+            />
           ))}
     </div>
   );

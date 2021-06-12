@@ -4,6 +4,7 @@
   width: 70px;
   @media screen and (max-width:500px) {
     height: 55px;
+    width: 60px;
     }
   &.medium{
     height: 50px;
@@ -36,15 +37,18 @@
     &.large {
       width: 60px;
       height: 60px;
-      left: 2px;
+      left: 5px;
       @media screen and (max-width:800px) {
-        width: 50px; 
+        width: 50px;
         height: 50px;
-        left: 6px;   }
+        left: 10px;
+        top: 10px;  }
         @media screen and (max-width:500px) {
           width: 40px;
           height: 40px;
-          left: 4px;    }
+          left: 3px;
+          top: 8px;
+         }
       //   top:-1.5px;
     }
     img {
@@ -71,6 +75,7 @@
     background-position-y: -47px;
     background-size: 324px;
     z-index: 0;
+    
     @media screen and (max-width:800px) {
       width: 35px;
       height: 40px;
@@ -92,24 +97,24 @@
 
     &.large {
       margin: auto;
-      margin-left: 16px;
-      margin-top: 1px;
+      /* margin-left: 16px; */
+      /* margin-top: 1px; */
       width: 70px;
-      height: 70px;
-      background-position-x: -330px;
-      background-position-y: -70px;
+      height: 71px;
+      background-position-x: -331px;
+      background-position-y: -69px;
       background-size: 465px;
-
+      
       @media screen and (max-width:800px) {
         width: 60px;
-        height: 62px;
-        background-position-x: -286px;
+        height: 60px;
+        background-position-x: -285px;
         background-position-y: -61px;
-        background-size: 402px;
+        background-size: 400px;
 
          }
         @media screen and (max-width:500px) {
-          width: 57px;
+          width: 50px;
           height: 50px;
           margin-left: 2px;
           background-position-x: -229px;

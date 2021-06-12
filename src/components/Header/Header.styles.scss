@@ -8,15 +8,16 @@
   border-bottom: solid 1px var(--borderColor);
   position: fixed;
   z-index: 1;
-  @media screen and (max-width:800px) {
-    height: 30px;
+  @media screen and (max-width: 800px) {
+    height: 35px;
   }
   .logo-container > img {
     //   -webkit-filter: invert(100%); /* Safari/Chrome */
     // filter: invert(100%);
     margin-top: 10px;
-    @media screen and (max-width:800px) {
-height: 15px;    }
+    @media screen and (max-width: 800px) {
+      height: 15px;
+    }
   }
   .input {
     position: relative;
@@ -27,9 +28,9 @@ height: 15px;    }
     justify-content: center;
     align-items: center;
     background: var(--background);
-    @media screen and (max-width:800px) {
+    @media screen and (max-width: 800px) {
       height: 15px;
-      width: 50px;
+      width: 100px;
     }
     span {
       position: absolute;
@@ -41,8 +42,8 @@ height: 15px;    }
       color: var(--secondary-color);
       font-size: 10px;
       font-family: monospace;
-      @media screen and (max-width:800px) {
-        font-size: 5px;
+      @media screen and (max-width: 800px) {
+        font-size: 7px;
       }
       i {
         margin-right: 5px;
@@ -62,38 +63,68 @@ height: 15px;    }
     justify-content: center;
     align-items: center;
     height: 45px;
-    svg{
-      @media screen and (max-width:800px) {
-        height: 15px;    }
+    .header-image-tab {
+      width: 28px;
+      height: 28px;
+      border-radius: 100%;
+      overflow: hidden;
+      margin-left: 15px;
+
+      @media screen and (max-width: 800px) {
+        width: 22px;
+        height: 22px;
+        margin-left: 10px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    svg {
+      @media screen and (max-width: 800px) {
+        height: 15px;
+      }
     }
     .header-image {
       position: relative;
-      margin: 0;
       .profileDropdown-container {
         display: none;
         width: 120px;
         height: 150px;
-      }
+        @media screen and (max-width:500px) {
+          font-size: 60px;
+      }}
       &:hover {
         .profileDropdown-container {
           display: flex;
           position: absolute;
           flex-direction: column;
-          top: 35px;
+          top: 20px;
           left: -30px;
           font-size: 15px;
-          box-shadow: 1px 1px 5px 0px var(--borderColor);
+          @media screen and (max-width:800px) {
+            left: -60px;
+            top: 10px;
+            font-size: 12px;
+        }
+          @media screen and (max-width:500px) {
+            font-size: 10px;
+            left: -80px;
+            top: 10px;
+
+        }
           .empty-span {
             background-color: rgba(255, 0, 0, 0);
             border: none;
-            height: 10%;
-          }
-          .logout-button-dropDown{
-            border-top: solid 1px var(--borderColor);
+            height: 30%;
+            box-shadow: 0px 0px 0px 0px;
 
           }
+          .logout-button-dropDown {
+            border-top: solid 1px var(--borderColor);
+          }
           span {
-            background-color: var(--secondary-background) ;
+            background-color: var(--secondary-background);
             height: 50%;
             width: auto;
             display: flex;
@@ -101,11 +132,14 @@ height: 15px;    }
             justify-content: space-between;
             padding: 0px 10px;
             align-items: center;
+            @media screen and (max-width:500px) {
+              font-size: 10px;
+          
+          }
             svg {
               margin: 0;
               padding: 0;
               height: auto;
-             
             }
           }
         }
@@ -120,11 +154,16 @@ height: 15px;    }
     }
     svg {
       margin-left: 20px;
-      padding-top: 7px;
-    
-    }
-    & > div {
-      margin-left: 20px;
+      @media screen and (max-width: 500px) {
+        margin-left: 10px;
+      }
+
+      & > div {
+        margin-left: 20px;
+        @media screen and (max-width: 500px) {
+          margin-left: 10px;
+        }
+      }
     }
     proPic-container {
       height: 30px;

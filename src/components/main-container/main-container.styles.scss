@@ -2,15 +2,20 @@
   display: flex;
   flex-direction: column;
   padding-top: 80px;
-  justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  @media screen and (max-width:800px) {
+    padding-top: 50px;
+  }
   .add-post-btn {
-    display: none;
+  display: none;
     border: solid 1px var(--borderColor);
     border-radius: 50%;
     margin-top: 10px;
     margin-bottom: 10px;
     color: rgb(150, 150, 150);
+    @media screen and (max-width:500px) {
+      font-size: 8px;  }
     &:hover{
         filter: invert(0.5);
     }
