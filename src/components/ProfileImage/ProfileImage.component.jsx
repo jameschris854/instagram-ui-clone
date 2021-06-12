@@ -8,7 +8,7 @@ export const ProfileImage = ({ size, state, image,...otherProps}) => {
       <div
         className={`profile-pic ${size === "large" ? "large" : ""}`}
       >
-        <img src={`${process.env.REACT_APP_SERVER_URL}img/users/${image}`} alt="" />
+        <img src={`${process.env.REACT_APP_SERVER_URL}/img/users/${image}`} alt="" />
       </div>
       <div className={`border ${size === "large" ? "large" : ""} ${state === "active"
             ? "active"

@@ -125,6 +125,7 @@ const Header = ({
               </svg>
             </span>
             <span
+            className='logout-button-dropDown'
               onClick={() => setAuth({ isAuthenticated: false, token: null })}
             >
               Logout

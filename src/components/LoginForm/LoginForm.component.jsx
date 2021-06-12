@@ -35,11 +35,12 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
     console.log(userCredentials.email, userCredentials.password);
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(email,password);
     try{
-      let newUser =await fetch('http://127.0.0.1:3000/api/v1/users/login',{
+      let newUser =await fetch(`${process.env.REACT_APP_API_URL}/users/login`,{
         headers: {
           'Content-Type': 'application/json'
         },
@@ -65,7 +66,7 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
 
     }else{
 
-      alert("login failed:")
+      alert("login failed: incorrect email or password")
 
     }
   }catch(err){

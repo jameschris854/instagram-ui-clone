@@ -2,8 +2,15 @@
   position: relative;
   height: 70px;
   width: 70px;
+  @media screen and (max-width:500px) {
+    height: 55px;
+    }
   &.medium{
     height: 50px;
+    width: 60px;
+    @media screen and (max-width:500px) {
+      height: 40px;
+      width: 40px;      }
   }
   .profile-pic {
     width: 40px;
@@ -12,15 +19,32 @@
     // border: solid 2px rgb(255, 255, 255);
     position: absolute;
     top: 7px;
-    left: 5px;
+    left: 1px;
     bottom: 0;
     right: 0;
     overflow: hidden;
-
+    @media screen and (max-width:800px)  {
+      width: 30px;
+      height: 30px;
+      left: 5px;
+      }
+      @media screen and (max-width:500px)  {
+        width: 30px;
+        height: 30px;
+        left: -5px;
+        }
     &.large {
       width: 60px;
       height: 60px;
       left: 2px;
+      @media screen and (max-width:800px) {
+        width: 50px; 
+        height: 50px;
+        left: 6px;   }
+        @media screen and (max-width:500px) {
+          width: 40px;
+          height: 40px;
+          left: 4px;    }
       //   top:-1.5px;
     }
     img {
@@ -47,6 +71,25 @@
     background-position-y: -47px;
     background-size: 324px;
     z-index: 0;
+    @media screen and (max-width:800px) {
+      width: 35px;
+      height: 40px;
+      background-position-x: -174px;
+      background-position-y: -34px;
+      background-size: 244px;
+
+       }
+       @media screen and (max-width:500px) {
+        width: 38px;
+        height: 40px;
+        background-position-x: -173px;
+        background-position-y: -34px;
+        background-size: 244px;
+    
+  
+         }
+    
+
     &.large {
       margin: auto;
       margin-left: 16px;
@@ -56,6 +99,23 @@
       background-position-x: -330px;
       background-position-y: -70px;
       background-size: 465px;
+
+      @media screen and (max-width:800px) {
+        width: 60px;
+        height: 62px;
+        background-position-x: -286px;
+        background-position-y: -61px;
+        background-size: 402px;
+
+         }
+        @media screen and (max-width:500px) {
+          width: 57px;
+          height: 50px;
+          margin-left: 2px;
+          background-position-x: -229px;
+          background-position-y: -48px;
+          background-size: 324px;
+  }
     }
     &.black-border {
       position: absolute;

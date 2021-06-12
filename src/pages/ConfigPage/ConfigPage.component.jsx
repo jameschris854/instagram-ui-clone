@@ -40,7 +40,7 @@ const ConfigPage = ({ currentUser, authState }) => {
     formData.append("photo", newPhoto, newPhoto.name);
 
     console.log(formData);
-    const response = await fetch("http://127.0.0.1:3000/api/v1/users/file", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/file`, {
       method: "POST",
       headers: {
         Authorization: "Bearer " + authState.token,
@@ -86,7 +86,7 @@ const ConfigPage = ({ currentUser, authState }) => {
   const handleUpdateProfilePic = async (e) => {
     e.preventDefault();
 
-    let res = await fetch("http://127.0.0.1:3000/api/v1/users", {
+    let res = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -103,7 +103,7 @@ const ConfigPage = ({ currentUser, authState }) => {
 
   const handleSubmitUpdateDetails = async (e) => {
     e.preventDefault();
-    let res = await fetch("http://127.0.0.1:3000/api/v1/users", {
+    let res = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -125,7 +125,7 @@ const ConfigPage = ({ currentUser, authState }) => {
   const handleSubmitUpdatePassword = async (e) => {
     e.preventDefault();
     console.log("updating password");
-    let res = await fetch("http://127.0.0.1:3000/api/v1/users/updatePassword", {
+    let res = await fetch(`${process.env.REACT_APP_API_URL}/users/updatePassword`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -146,7 +146,7 @@ const ConfigPage = ({ currentUser, authState }) => {
 
   const handleDeleteAccount = async () => {
     console.log("deeting...");
-    let res = await fetch("http://127.0.0.1:3000/api/v1/users/", {
+    let res = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

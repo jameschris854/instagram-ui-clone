@@ -40,7 +40,7 @@ const ForgotPasswordPage = () => {
       console.log(email);
 
       let res = await fetch(
-        "http://127.0.0.1:3000/api/v1/users/forgotPassword",
+        `${process.env.REACT_APP_API_URL}/users/forgotPassword`,
         {
           method: "POST",
           headers: {
@@ -63,7 +63,7 @@ const ForgotPasswordPage = () => {
       console.log(email);
 
       let res = await fetch(
-        "http://127.0.0.1:3000/api/v1/users/resetPassword",
+        `${process.env.REACT_APP_API_URL}/users/resetPassword`,
         {
           method: "PATCH",
           headers: {

@@ -11,7 +11,7 @@ const PostContainer = ({ postsData, fetchPosts, authState,currentUser }) => {
   useEffect(() => {
     async function fetchData() {
       // You can await here
-      const response = await fetch("http://127.0.0.1:3000/api/v1/posts", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
         headers: { Authorization: "Bearer " + authState.token },
       });
       const data = await response.json();

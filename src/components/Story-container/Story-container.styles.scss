@@ -27,4 +27,17 @@ $border-color: #dbdbdb;
     overflow-y: hidden;
     @include hideScrollbar();
     background-color: var(--secondary-background);
+
+    @media screen and (max-width:800px) {
+      width: 500px; 
+      padding-top: 10px ;
+      padding-bottom: 0px ;
+      height: 110px;
+
+         }
+      @media screen and (max-width:500px) {
+        padding-top: 10px ;
+        width: 350px; 
+        height: fit-content;
+      }
 }

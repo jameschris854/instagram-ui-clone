@@ -14,4 +14,7 @@
     width: auto;
     animation:ease 1s;
   }
+  @media screen and (max-width:800px) {
+    display: none;
+  }
 }

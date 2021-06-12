@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./loginPhone.styles.scss";
 
 
 
 export const LoginPhone = () => {
   const [backgroundNo,changeBackgroundNo] = useState(1)
+
+  useEffect(() => {
+    const getBackgroundTimeout =  setTimeout(() => {
+      changeBackgroundNo(backgroundNo < 5 ? backgroundNo + 1 : 1);
+    }, 2000);
+
+    return () => clearTimeout(getBackgroundTimeout)
+  },[backgroundNo])
+
   
-   setTimeout(() => {
-    changeBackgroundNo(backgroundNo < 5 ? backgroundNo + 1 : 1);
-  }, 2000);
 
   return (
     <div className="phone-container">

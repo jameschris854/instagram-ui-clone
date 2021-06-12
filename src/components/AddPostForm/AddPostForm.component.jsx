@@ -35,7 +35,7 @@ const AddPostForm = ({ currentUser, authState, visibility, handleClick }) => {
     formData.append("photo", newPhoto, newPhoto.name);
 
     console.log(formData);
-    const response = await fetch("http://127.0.0.1:3000/api/v1/posts/file", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/file`, {
       method: "POST",
       headers: {
         Authorization: "Bearer " + authState.token,
@@ -61,7 +61,7 @@ const AddPostForm = ({ currentUser, authState, visibility, handleClick }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let res = await fetch("http://127.0.0.1:3000/api/v1/posts/", {
+    let res = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const AddPostForm = ({ currentUser, authState, visibility, handleClick }) => {
         <span>Create Post</span>
         <i className="far fa-eye-slash" onClick={handleClick}></i>
       </div>
-      <img className='post-preview-image' src={`${process.env.REACT_APP_SERVER_URL}img/posts/${prevImageUrl}`} alt="" />
+      <img className='post-preview-image' src={`${process.env.REACT_APP_SERVER_URL}/img/posts/${prevImageUrl}`} alt="" />
       <FormInput type="file" onChange={handleFileChange} />
       <form onSubmit={handleSubmit}>
         <FormInput

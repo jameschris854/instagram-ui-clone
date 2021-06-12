@@ -36,7 +36,7 @@ const handleChange = (e) => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(fullName,userName,email,password);
-    let newUser =await fetch('http://127.0.0.1:3000/api/v1/users/signup',{
+    let newUser =await fetch(`${process.env.REACT_APP_API_URL}/users/signup`,{
       method:"POST",
       headers: {
         'Content-Type': 'application/json'
@@ -53,9 +53,7 @@ const handleChange = (e) => {
     // user = user.doc
     console.log(user);
     if(user.token){
-
       setCurrentUser(user)
-
       setAuthStatus({
         isAuthenticated:true,
         token:user.token
@@ -64,11 +62,8 @@ const handleChange = (e) => {
         history.push(`/home`);
 
       }, 1000);
-
     }else{
-
-      alert("login failed")
-
+      alert("signup failed : "+user.message)
     }
 
   }

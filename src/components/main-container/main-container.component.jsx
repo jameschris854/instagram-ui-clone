@@ -1,6 +1,6 @@
 import React,{ useState } from "react";
 import PostContainer from "../Post-container/Post-container.component";
-import { StoryContainer } from "../Story-container/Story-container.component";
+import StoryContainer  from "../Story-container/Story-container.component";
 import AddPostForm from "../../components/AddPostForm/AddPostForm.component";
 import "./main-container.styles.scss";
 

@@ -6,16 +6,13 @@
   align-items: center;
   .add-post-btn {
     display: none;
-    border: solid 1px rgb(255, 183, 195);
+    border: solid 1px var(--borderColor);
     border-radius: 50%;
     margin-top: 10px;
     margin-bottom: 10px;
-
-    color: rgb(255, 183, 195);
+    color: rgb(150, 150, 150);
     &:hover{
-        color: rgb(255, 255, 255);
-        border: solid 1px rgb(255, 183, 195);
-        background-color: rgb(255, 36, 83);
+        filter: invert(0.5);
     }
     &.show {
       display: block;

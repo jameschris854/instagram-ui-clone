@@ -23,7 +23,7 @@ const UserProfilePage = ({ authState }) => {
     const id = useParams().id
   useEffect(() => {
     async function userData() {
-      const response = await fetch(`http://127.0.0.1:3000/api/v1/users/${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, {
         headers: { Authorization: "Bearer " + authState.token},
       });
       let userData = await response.json();
@@ -39,9 +39,9 @@ const UserProfilePage = ({ authState }) => {
       <div className="profile-page-container">
         <div className="stats-container">
           <div className="profile-pic">
-            <img src={"/" + userData.photo} alt="defaultPosts" />
+            <img src={process.env.REACT_APP_SERVER_URL+'/img/users/'+ userData.photo} alt="defaultPosts" />
           </div>
-          <div className="name">{userData.fullName}</div>
+          <div className="name">{userData.userName}</div>
           <div></div>
           <div className="stats">
             <div className="stat">
@@ -54,7 +54,7 @@ const UserProfilePage = ({ authState }) => {
               <span>100m</span> following
             </div>
           </div>
-          <div className="username">{userData.userName}</div>
+          <div className="username">{userData.fullName}</div>
         </div>
         <div className="postIcon">
           <i className="fas fa-border-all"></i>
@@ -69,7 +69,7 @@ const UserProfilePage = ({ authState }) => {
                 <img
                   src={
                     process.env.REACT_APP_SERVER_URL +
-                    "img/posts/" +
+                    "/img/posts/" +
                     post.postImage
                   }
                   alt=""

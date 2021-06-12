@@ -13,9 +13,9 @@ function App({ authState, currentUser,theme }) {
   console.log(currentUser);
  
   if(theme === 'dark'){
-    document.documentElement.style.setProperty('--borderColor','#1b1b1b');
-    document.documentElement.style.setProperty('--background','#101010');
-    document.documentElement.style.setProperty('--secondary-background','rgb(0, 0, 0)');
+    document.documentElement.style.setProperty('--borderColor','#0000006e');
+    document.documentElement.style.setProperty('--background','#272727');
+    document.documentElement.style.setProperty('--secondary-background','rgb(53 53 53)');
     document.documentElement.style.setProperty('--primary-color','rgb(255, 255, 255)');
     document.documentElement.style.setProperty('--secondary-color','rgb(219, 219, 219)');
   }else{

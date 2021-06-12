@@ -1,16 +1,34 @@
-.item-container{
-    display: flex;
-    flex-direction: column;
-    min-width: 100px;
-        min-height: 88px;
-        color: var(--primary-color);
-    .profile-pic{
-        margin-left: 20px;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-      img{
-        width: 100%;
-        height: 100%;
-      }
+.item-container {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 88px;
+  overflow: hidden;
+  color: var(--primary-color);
+  @media screen and (max-width:500px) {
+    height: fit-content;
+}
+  .name {
+    font-size: 12px;
+    @media screen and (max-width:800px) {
+      font-size: 10px;
+    }
+      @media screen and (max-width:500px) {
+        font-size: 8px; 
+        height: fit-content;
+  }
+  }
+
+  .profile-pic {
+    margin-left: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    @media screen and (max-width:500px) {
+      margin-left: 10px;
+    }
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }

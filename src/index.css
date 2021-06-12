@@ -9,16 +9,16 @@ body {
  
 }
 body::-webkit-scrollbar{
-  width: 9px;
+  width: 5px;
 }
 
 body::-webkit-scrollbar-track{
   /* background: var(--secondary-background); */
-  background: var(--borderColor);
+  background: var(--secondary-background);
   border:solid 1px var(--borderColor)
 }
 body::-webkit-scrollbar-thumb{
-  background:var(--secondary-color);
+  background:var(--borderColor);
 }
 
 code {
