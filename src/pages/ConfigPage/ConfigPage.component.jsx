@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { toast } from "react-toastify";
 import FormInput from "../../components/form-input/form-input.component";
-
+import {useHistory} from 'react-router-dom'
 import Header from "../../components/Header/Header.component";
 import { ProfileImage } from "../../components/ProfileImage/ProfileImage.component";
+import { setAuthState } from "../../redux/auth/auth.action";
+import { setCurrentUser } from "../../redux/user/user.action";
 
 import "./ConfigPage.styles.scss";
 
-const ConfigPage = ({ currentUser, authState }) => {
+const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,setAuthStatus}) => {
+
+  const history = useHistory()
+
   const [cred, setCred] = useState({
     fullName: currentUser.fullName,
     userName: currentUser.userName,
@@ -24,6 +30,7 @@ const ConfigPage = ({ currentUser, authState }) => {
   const [prevImageUrl, setPrevImageUrl] = useState(`${currentUser.photo}`);
 
   const { fullName, userName } = cred;
+  
   const { currentPassword, newPassword } = credSec;
 
   const handleFileChange = async (e) => {
@@ -55,9 +62,10 @@ const ConfigPage = ({ currentUser, authState }) => {
     console.log(imageData);
 
     if (imageData.status === "fail") {
-      alert(imageData.message);
+      toast.error(imageData.message,{position:toast.POSITION.TOP_CENTER})
     } else {
       setPrevImageUrl(imageData.file);
+      
     }
 
     // ...
@@ -100,8 +108,20 @@ const ConfigPage = ({ currentUser, authState }) => {
       }),
     });
     let updatedProfilePic = await res.json();
+    
+     let currentUserData = currentUserObj
+    
+    currentUserData.user.photo = prevImageUrl
+
+    let updatedUserData = currentUserData
+    setCurrentUser(updatedUserData)
+    toast.success('New DP Updated',{position:toast.POSITION.TOP_CENTER})
+
+    setTimeout(() => {
+      history.go(0)
+    }, 3000);
+    
     console.log(updatedProfilePic);
-    setPrevImageUrl("");
   };
 
   const handleSubmitUpdateDetails = async (e) => {
@@ -120,9 +140,18 @@ const ConfigPage = ({ currentUser, authState }) => {
     let updatedUser = await res.json();
 
     if (updatedUser.status === "success") {
-      alert("update successfull");
+      toast.success('details updated successfully',{position:toast.POSITION.TOP_CENTER})
+      let currentUserData = currentUserObj
+      currentUserData.user.userName = userName
+      currentUserData.user.fullName = fullName
+      let updatedUserData = currentUserData
+    setCurrentUser(updatedUserData)
+    setTimeout(() => {
+      history.go(0)
+    }, 3000);
+    }else{
+      toast.error(updatedUser.message,{position:toast.POSITION.TOP_CENTER})
     }
-
     console.log(updatedUser);
   };
   const handleSubmitUpdatePassword = async (e) => {
@@ -145,9 +174,11 @@ const ConfigPage = ({ currentUser, authState }) => {
     let updatedUser = await res.json();
 
     if (updatedUser.status === "success") {
-      alert("update successfull");
+      toast.success('Password changed successfully',{position:toast.POSITION.TOP_CENTER})
+    }else{
+      toast.error(updatedUser.message,{position:toast.POSITION.TOP_CENTER})
     }
-    console.log(updatedUser);
+    console.log('updated user:'+updatedUser);
   };
 
   const handleDeleteAccount = async () => {
@@ -162,10 +193,14 @@ const ConfigPage = ({ currentUser, authState }) => {
         currentPassword: passwordDelAcc,
       }),
     });
+
     let deletedUser = await res.json();
-    console.log(deletedUser);
+    console.log('delete payload:'+deletedUser);
     if (deletedUser.status === "success") {
-      alert("account successfully deleted");
+      toast.error("account deleted successfully",{position:toast.POSITION.TOP_CENTER})
+      setAuthStatus({ isAuthenticated: false, token: null })
+    }else{
+      toast.error(deletedUser.message,{position:toast.POSITION.TOP_CENTER})
     }
   };
 
@@ -310,7 +345,7 @@ const ConfigPage = ({ currentUser, authState }) => {
                 tab === "delete-account" ? "show" : ""
               }`}
             >
-              <form onSubmit={handleDeleteAccount}>
+              <form>
                 <span className="config-user">
                   <ProfileImage
                     image={"/" + currentUser.photo}
@@ -349,7 +384,16 @@ const ConfigPage = ({ currentUser, authState }) => {
 
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser.user,
+  currentUserObj: state.user.currentUser,
   authState: state.auth.authData,
 });
 
-export default connect(mapStateToProps)(ConfigPage);
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  setAuthStatus:(authState) => dispatch(setAuthState(authState))
+  
+});
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(ConfigPage);

@@ -6,7 +6,11 @@ import { setCurrentUser } from "../../redux/user/user.action";
 import { Button } from "../Button/Button.component";
 import FormInput from "../form-input/form-input.component";
 import OR from "../FormOR/FormOr.component";
+
+import {toast} from 'react-toastify'
+
 import "./LoginForm.styles.scss";
+
 
 const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
   const [userCredentials, setUserCredentials] = useState({
@@ -59,18 +63,13 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
         isAuthenticated:true,
         token:user.token
       })
-      setTimeout(() => {
         history.push(`/home`);
-
-      }, 1000);
-
+        toast.success("login Success",{position:toast.POSITION.TOP_CENTER,autoClose:1000})
     }else{
-
-      alert("login failed: incorrect email or password")
-
+      toast.error("login failed:"+user.message,{position:toast.POSITION.TOP_CENTER})
     }
   }catch(err){
-    alert("login failed:"+err.message)
+    toast.error("login failed:"+err.message,{position:toast.POSITION.TOP_CENTER})
     console.log('error:' + err.message);
   }
   };

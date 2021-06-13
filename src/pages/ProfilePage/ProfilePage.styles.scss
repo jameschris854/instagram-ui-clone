@@ -40,12 +40,14 @@
       grid-area: photo;
       overflow: hidden;
       width: 150px;
+      height: 150px;
       padding: 20px;
       padding-bottom: 30px;
       padding-right: 70px;
       @media screen and (max-width: 500px) {
       padding: 0;
       width: 83px;
+      height: 83px;
       }
       img {
         width: 150px;

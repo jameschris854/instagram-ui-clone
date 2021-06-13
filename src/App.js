@@ -9,6 +9,12 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage.component";
 import ConfigPage from "./pages/ConfigPage/ConfigPage.component";
 import ForgotPasswordPage from './pages/ForgotPassword/ForgotPasswordPage.component'
 import UserProfilePage from './pages/UserProfilePage/UserProfilePage.component'
+
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function App({ authState, currentUser,theme }) {
   console.log(currentUser);
  
@@ -46,7 +52,7 @@ function App({ authState, currentUser,theme }) {
           <Route
             exact
             path={`/profile/${currentUser.id}`}
-            render={() => (authState.isAuthenticated ? <ProfilePage /> : <Redirect to="/" />)}          />: <Redirect to='/' />
+            render={() => (authState.isAuthenticated ? <ProfilePage /> : <Redirect to="/" />)} />: <Redirect to='/' />
         }
         {
           currentUser?
@@ -63,6 +69,7 @@ function App({ authState, currentUser,theme }) {
              render={() => (authState.isAuthenticated ? <UserProfilePage /> : <Redirect to="/" />)}  />: <Redirect to='/' />
         }
       </Switch>
+      <ToastContainer />
     </div>
   );
 }

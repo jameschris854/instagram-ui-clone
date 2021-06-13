@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory,Link } from 'react-router-dom'
+import { toast } from "react-toastify";
 import { setAuthState } from "../../redux/auth/auth.action";
 import { setCurrentUser } from "../../redux/user/user.action";
 import { selectCurrentUser } from "../../redux/user/user.selector";
@@ -29,7 +30,6 @@ useEffect(() => {
 const handleChange = (e) => {
       const { value, name } = e.target;
       setUserCredentials({...userCredentials,[name]:value})
-
   }
 
   
@@ -58,14 +58,13 @@ const handleChange = (e) => {
         isAuthenticated:true,
         token:user.token
       })
-      setTimeout(() => {
         history.push(`/home`);
-
-      }, 1000);
+        toast.success("Signup Success",{position:toast.POSITION.TOP_CENTER,autoClose:1000})
+    
     }else{
-      alert("signup failed : "+user.message)
+      toast.error("signup failed : "+user.message,{position:toast.POSITION.TOP_CENTER})
+      console.log(user.message);
     }
-
   }
 
   return (

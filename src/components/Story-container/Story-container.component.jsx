@@ -26,6 +26,7 @@ const StoryContainer = ({ authState }) => {
         ? <Spinner stories/>
         : userList.map((user) => (
             <StoryItem
+              key={user.id}
               state="active"
               proImage={user.photo}
               username={user.userName}

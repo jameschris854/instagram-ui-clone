@@ -4,8 +4,13 @@ import Header from "../../components/Header/Header.component";
 import { connect } from "react-redux";
 import noPosts from "../../assets/images/noPosts.jpg";
 import { Link,useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import { setPostData } from "../../redux/post/post.action";
+import { setCurrentUser } from "../../redux/user/user.action";
 
-const ProfilePage = ({ currentUser, authState }) => {
+const ProfilePage = ({ currentUser, authState ,currentPosts,updatePosts ,currentUserObj,setCurrentUser}) => {
+
+
   let location = useLocation()
   const handlePostDelete = async (id) => {
     console.log("deleting post" + id);
@@ -19,8 +24,16 @@ const ProfilePage = ({ currentUser, authState }) => {
       })
     });
     let deletedPost = await res.json();
-    if (deletedPost.state === "success") {
-      alert("post deleted");
+    if (deletedPost.status === "success") {
+      let updatedCurrentPosts = currentPosts.posts.filter((post) => !(post.id+'' === id+''))
+
+      let updatedCurrentUserObj = currentUserObj
+       updatedCurrentUserObj.user.posts =  updatedCurrentUserObj.user.posts.filter((post) => !(post.id+'' === id+''))
+
+      updatePosts(updatedCurrentPosts)
+      setCurrentUser(updatedCurrentUserObj)
+      toast.success("Post deleted",{position:toast.POSITION.TOP_CENTER});
+
     }
     console.log(deletedPost);
   };
@@ -31,7 +44,7 @@ const ProfilePage = ({ currentUser, authState }) => {
       <div className="profile-page-container">
         <div className="stats-container">
           <div className="profile-pic">
-            <img src={`${process.env.REACT_APP_SERVER_URL}/img/users/${currentUser.photo}`} alt="defaultPosts" />
+            <img src={`${process.env.REACT_APP_SERVER_URL}/img/users/${currentUser.photo}`} alt="" />
           </div>
           {/* TODO CHECK */}
           <div className="name">{currentUser.fullName} <div className='verified-badge' > <img src={``} alt="" /></div> </div>
@@ -77,10 +90,15 @@ const ProfilePage = ({ currentUser, authState }) => {
 
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser.user,
+  currentUserObj:state.user.currentUser,
   authState: state.auth.authData,
+  currentPosts:state.posts
 });
-
-export default connect(mapStateToProps)(ProfilePage);
+const mapDispatchToProps = (dispatch) => ({
+  updatePosts: (posts) => dispatch(setPostData(posts)),
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+export default connect(mapStateToProps,mapDispatchToProps)(ProfilePage);
 
 /* <div className='previewPost'><img src='https://images.pexels.com/photos/2486168/pexels-photo-2486168.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' alt="" /></div>
 <div className='previewPost'><img src='https://images.pexels.com/photos/2486168/pexels-photo-2486168.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' alt="" /></div>

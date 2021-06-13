@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { ProfileImage } from "../ProfileImage/ProfileImage.component";
-import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 import "./Header.styles.scss";
