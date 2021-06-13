@@ -31,7 +31,11 @@ svg {
 }
 
 .Toastify__toast--success {
-  background-color: blue;
+  background-color: rgb(136, 252, 146);
+}
+
+.Toastify__toast--error {
+  background-color: rgb(255, 118, 118);
 }
 
 // .App-logo {
