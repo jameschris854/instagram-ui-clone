@@ -37,7 +37,7 @@ const ForgotPasswordPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formPage === "forgotPassword") {
-      console.log(email);
+      // console.log(email);
 
       let res = await fetch(
         `${process.env.REACT_APP_API_URL}/users/forgotPassword`,
@@ -51,16 +51,16 @@ const ForgotPasswordPage = () => {
           }),
         }
       );
-      console.log(res);
+      // console.log(res);
       let resObj = await res.json();
       if (resObj.status === "success") {
         setfromPage("resetPassword");
       } else {
         alert("no user ");
       }
-      console.log(resObj);
+      // console.log(resObj);
     } else if (formPage === "resetPassword") {
-      console.log(email);
+      // console.log(email);
 
       let res = await fetch(
         `${process.env.REACT_APP_API_URL}/users/resetPassword`,
@@ -75,7 +75,7 @@ const ForgotPasswordPage = () => {
           }),
         }
       );
-      console.log(res);
+      // console.log(res);
       let resObj = await res.json();
       if (resObj.status === "success") {
         setfromPage("forgetPassword");
@@ -83,7 +83,7 @@ const ForgotPasswordPage = () => {
       } else {
         alert("no user ");
       }
-      console.log(resObj);
+      // console.log(resObj);
     }
   };
 

@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 const UserProfilePage = ({ authState }) => {
-  console.log(authState);
+  // console.log(authState);
   // const [id, setId] = useState("");
   const [userData, setUserData] = useState({
   email: "",
@@ -27,7 +27,7 @@ const UserProfilePage = ({ authState }) => {
         headers: { Authorization: "Bearer " + authState.token},
       });
       let userData = await response.json();
-      console.log(userData);
+      // console.log(userData);
       setUserData(userData.user)
     }
     userData();

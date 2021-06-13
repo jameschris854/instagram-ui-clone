@@ -36,9 +36,9 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
   const handleFileChange = async (e) => {
     e.preventDefault();
 
-    console.log("file up");
+    // console.log("file up");
 
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
 
     let newPhoto = e.target.files[0];
 
@@ -46,7 +46,7 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
 
     formData.append("photo", newPhoto, newPhoto.name);
 
-    console.log(formData);
+    // console.log(formData);
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/users/file`,
       {
@@ -59,7 +59,7 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
     );
 
     let imageData = await response.json();
-    console.log(imageData);
+    // console.log(imageData);
 
     if (imageData.status === "fail") {
       toast.error(imageData.message,{position:toast.POSITION.TOP_CENTER})
@@ -72,7 +72,7 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
   };
 
   const handleChange = (e) => {
-    console.log(cred);
+    // console.log(cred);
     const { value, name } = e.target;
     if (tab === "profile") {
       setCred((prevState) => ({ ...prevState, [name]: value }));
@@ -108,20 +108,20 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
       }),
     });
     let updatedProfilePic = await res.json();
-    
+    if(updatedProfilePic.status === 'success') toast.success('New DP Updated',{position:toast.POSITION.TOP_CENTER})
+
      let currentUserData = currentUserObj
     
     currentUserData.user.photo = prevImageUrl
 
     let updatedUserData = currentUserData
     setCurrentUser(updatedUserData)
-    toast.success('New DP Updated',{position:toast.POSITION.TOP_CENTER})
 
     setTimeout(() => {
       history.go(0)
     }, 3000);
     
-    console.log(updatedProfilePic);
+    // console.log(updatedProfilePic);
   };
 
   const handleSubmitUpdateDetails = async (e) => {
@@ -152,11 +152,11 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
     }else{
       toast.error(updatedUser.message,{position:toast.POSITION.TOP_CENTER})
     }
-    console.log(updatedUser);
+    // console.log(updatedUser);
   };
   const handleSubmitUpdatePassword = async (e) => {
     e.preventDefault();
-    console.log("updating password");
+    // console.log("updating password");
     let res = await fetch(
       `${process.env.REACT_APP_API_URL}/users/updatePassword`,
       {
@@ -178,11 +178,11 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
     }else{
       toast.error(updatedUser.message,{position:toast.POSITION.TOP_CENTER})
     }
-    console.log('updated user:'+updatedUser);
+    // console.log('updated user:'+updatedUser);
   };
 
   const handleDeleteAccount = async () => {
-    console.log("deeting...");
+    // console.log("deeting...");
     let res = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
       method: "DELETE",
       headers: {
@@ -195,7 +195,7 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
     });
 
     let deletedUser = await res.json();
-    console.log('delete payload:'+deletedUser);
+    // console.log('delete payload:'+deletedUser);
     if (deletedUser.status === "success") {
       toast.error("account deleted successfully",{position:toast.POSITION.TOP_CENTER})
       setAuthStatus({ isAuthenticated: false, token: null })

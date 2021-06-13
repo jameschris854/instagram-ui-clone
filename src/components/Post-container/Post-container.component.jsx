@@ -7,7 +7,7 @@ import "./Post-container.styles.scss";
 
 const PostContainer = ({ postsData, fetchPosts, authState,currentUser }) => {
   
-  console.log(authState);
+  // console.log(authState);
   
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const PostContainer = ({ postsData, fetchPosts, authState,currentUser }) => {
     fetchData();
   }, [fetchPosts, authState]);
 
-  console.log(postsData.posts ? console.log(postsData.posts) : "no posts");
+  // console.log(postsData.posts ? console.log(postsData.posts) : "no posts");
   
   return (
     <div className="post-container">

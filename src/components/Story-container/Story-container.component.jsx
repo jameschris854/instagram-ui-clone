@@ -9,13 +9,13 @@ const StoryContainer = ({ authState }) => {
 
   useEffect(() => {
     async function fetchUsersList() {
-      console.log(`${process.env.REACT_APP_API_URL}users`);
+      // console.log(`${process.env.REACT_APP_API_URL}users`);
       const res = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
         headers: { Authorization: "Bearer " + authState.token },
       });
       const allUsers = await res.json();
       setUserList(allUsers.data.users);
-      console.log(allUsers.data.users);
+      // console.log(allUsers.data.users);
     }
     fetchUsersList();
   }, [authState.token]);

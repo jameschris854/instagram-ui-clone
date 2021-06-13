@@ -13,7 +13,7 @@ const ProfilePage = ({ currentUser, authState ,currentPosts,updatePosts ,current
 
   let location = useLocation()
   const handlePostDelete = async (id) => {
-    console.log("deleting post" + id);
+    // console.log("deleting post" + id);
     let res = await fetch(`${process.env.REACT_APP_API_URL}/posts/${id}`, {
       method: "DELETE",
       headers: {
@@ -35,9 +35,9 @@ const ProfilePage = ({ currentUser, authState ,currentPosts,updatePosts ,current
       toast.success("Post deleted",{position:toast.POSITION.TOP_CENTER});
 
     }
-    console.log(deletedPost);
+    // console.log(deletedPost);
   };
-  console.log(process.env.REACT_APP_SERVER_URL);
+  // console.log(process.env.REACT_APP_SERVER_URL);
   return (
     <div className="profile-page-wrapper">
       <Header />

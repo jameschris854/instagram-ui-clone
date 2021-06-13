@@ -24,7 +24,7 @@ const AddPostForm = ({
   const handleChange = (e) => {
     e.preventDefault();
 
-    console.log("change");
+    // console.log("change");
 
     const { value } = e.target;
 
@@ -34,9 +34,9 @@ const AddPostForm = ({
   const handleFileChange = async (e) => {
     e.preventDefault();
 
-    console.log("file up");
+    // console.log("file up");
 
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
 
     let newPhoto = e.target.files[0];
 
@@ -44,7 +44,7 @@ const AddPostForm = ({
 
     formData.append("photo", newPhoto, newPhoto.name);
 
-    console.log(formData);
+    // console.log(formData);
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/posts/file`,
       {
@@ -57,7 +57,7 @@ const AddPostForm = ({
     );
 
     let imageData = await response.json();
-    console.log(imageData);
+    // console.log(imageData);
 
     if (imageData.status === "fail") {
       alert(imageData.message);
@@ -85,7 +85,7 @@ const AddPostForm = ({
     });
     let createdPost = await res.json();
     if (createdPost.status === "success") {
-      console.log(createdPost.post);
+      // console.log(createdPost.post);
 
       let updatedUserObj = currentUserObj;
       updatedUserObj.user.posts.unshift({

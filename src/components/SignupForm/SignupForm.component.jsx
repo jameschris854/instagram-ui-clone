@@ -35,7 +35,7 @@ const handleChange = (e) => {
   
   const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(fullName,userName,email,password);
+    // console.log(fullName,userName,email,password);
     let newUser =await fetch(`${process.env.REACT_APP_API_URL}/users/signup`,{
       method:"POST",
       headers: {
@@ -51,7 +51,7 @@ const handleChange = (e) => {
     
     let user = await newUser.json()
     // user = user.doc
-    console.log(user);
+    // console.log(user);
     if(user.token){
       setCurrentUser(user)
       setAuthStatus({
@@ -63,7 +63,7 @@ const handleChange = (e) => {
     
     }else{
       toast.error("signup failed : "+user.message,{position:toast.POSITION.TOP_CENTER})
-      console.log(user.message);
+      // console.log(user.message);
     }
   }
 

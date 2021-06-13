@@ -5,7 +5,7 @@ import "./Post.styles.scss";
 
 export const Post = ({ imageUrl, proImage, state,userId, userName, caption }) => {
   let history = useHistory();
-  console.log(userId);
+  // console.log(userId);
   return (
     <div className="post-wrapper">
       <div className="header">

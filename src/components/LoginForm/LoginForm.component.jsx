@@ -36,13 +36,13 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
     setUserCredentials((prevState) => {
       return { ...prevState, [name]: value };
     });
-    console.log(userCredentials.email, userCredentials.password);
+    // console.log(userCredentials.email, userCredentials.password);
   };
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email,password);
+    // console.log(email,password);
     try{
       let newUser =await fetch(`${process.env.REACT_APP_API_URL}/users/login`,{
         headers: {
@@ -56,7 +56,7 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
       })
       let user = await newUser.json()
     
-    console.log(user);
+    // console.log(user);
     if(user.token){
       setCurrentUser(user)
       setAuthStatus({
@@ -70,7 +70,7 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
     }
   }catch(err){
     toast.error("login failed:"+err.message,{position:toast.POSITION.TOP_CENTER})
-    console.log('error:' + err.message);
+    // console.log('error:' + err.message);
   }
   };
 
