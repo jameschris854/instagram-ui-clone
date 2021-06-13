@@ -72,7 +72,7 @@ const ProfilePage = ({ currentUser, authState ,currentPosts,updatePosts ,current
           {currentUser.posts.length < 1 ? (
             <img className='no-posts' src={noPosts} alt="" />
           ) : (
-            currentUser.posts.map((post) => (
+            currentUser.posts.reverse().map((post) => (
               <div className="previewPost" key={post._id}>
                 <img src={process.env.REACT_APP_SERVER_URL+'/img/posts/'+post.postImage} alt="" />
                 <i
