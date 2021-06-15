@@ -5,10 +5,8 @@ import { Post } from "../Post/Post.component";
 import Spinner from "../Spinner/Spinner.component";
 import "./Post-container.styles.scss";
 
-const PostContainer = ({ postsData, fetchPosts, authState,currentUser }) => {
-  
+const PostContainer = ({ postsData, fetchPosts, authState, currentUser }) => {
   // console.log(authState);
-  
 
   useEffect(() => {
     async function fetchData() {
@@ -24,23 +22,28 @@ const PostContainer = ({ postsData, fetchPosts, authState,currentUser }) => {
   }, [fetchPosts, authState]);
 
   // console.log(postsData.posts ? console.log(postsData.posts) : "no posts");
-  
+
   return (
     <div className="post-container">
-      {!postsData.posts
-        ? <Spinner posts/>
-        :postsData.posts.map((post) => (
-          <Post
-            key={post.id}
-            state="active"
-            imageUrl={post.postImage}
-            proImage={post.author.photo}
-            userName={post.author.userName}
-            // eslint-disable-next-line
-            userId={post.author.id == currentUser.id? null :post.author.id}
-            caption={post.postCaption}
-          />
-        ))  }
+      {!postsData.posts ? (
+        <Spinner posts />
+      ) : (
+        postsData.posts.map((post) => {
+          if(!post.author) return null
+          return (
+            <Post
+              key={post.id}
+              state="active"
+              imageUrl={post.postImage}
+              proImage={post.author.photo}
+              userName={post.author.userName}
+              // eslint-disable-next-line
+              userId={post.author.id == currentUser.id ? null : post.author.id}
+              caption={post.postCaption}
+            />
+          );
+        })
+      )}
     </div>
   );
 };
