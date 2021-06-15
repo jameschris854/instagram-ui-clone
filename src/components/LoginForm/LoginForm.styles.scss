@@ -3,8 +3,8 @@ $border-color: #dbdbdb;
 .form-container {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
- 
+  
+
   span {
     margin: 15px;
     font-size: 16px;
@@ -16,6 +16,7 @@ $border-color: #dbdbdb;
     align-items: center;
     border: solid 1px $border-color;
     width:100%;
+    background-color: white;
     .logo-image {
       margin: 22px auto 12px;
     }
@@ -37,6 +38,7 @@ $border-color: #dbdbdb;
     height: auto;
     align-items: center;
     padding: 15px;
+    background-color: white;
     span {
       margin: 15px;
       font-size: 16px;
