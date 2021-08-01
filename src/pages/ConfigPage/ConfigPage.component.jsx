@@ -27,7 +27,7 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
 
   const [tab, setTab] = useState("profile");
 
-  const [prevImageUrl, setPrevImageUrl] = useState(`${currentUser.photo}`);
+  const [prevImageUrl, setPrevImageUrl] = useState(`${currentUser.photo?currentUser.photo:'/default.jpg'}`);
 
   const { fullName, userName } = cred;
   
@@ -65,7 +65,7 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
       toast.error(imageData.message,{position:toast.POSITION.TOP_CENTER})
     } else {
       setPrevImageUrl(imageData.file);
-      
+
     }
 
     // ...
@@ -108,13 +108,15 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
       }),
     });
     let updatedProfilePic = await res.json();
+    console.log(res);
+    console.log(updatedProfilePic);
     if(updatedProfilePic.status === 'success') toast.success('New DP Updated',{position:toast.POSITION.TOP_CENTER})
 
      let currentUserData = currentUserObj
-    
-    currentUserData.user.photo = prevImageUrl
+    currentUserData.user.photo = updatedProfilePic.doc.photo
 
     let updatedUserData = currentUserData
+    console.log(updatedUserData);
     setCurrentUser(updatedUserData)
 
     setTimeout(() => {
@@ -244,7 +246,7 @@ const ConfigPage = ({ currentUser, authState ,setCurrentUser,currentUserObj ,set
               <form onSubmit={handleSubmitUpdateDetails}>
                 <span className="config-user">
                   <ProfileImage
-                    image={`${prevImageUrl}`}
+                    image={`${prevImageUrl.startsWith('http://res.cloudinary') ? prevImageUrl : process.env.REACT_APP_SERVER_URL+'/img/users/'+prevImageUrl}`}
                     state={"none"}
                     size={"small"}
                   />

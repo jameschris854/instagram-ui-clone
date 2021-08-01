@@ -10,7 +10,7 @@ import { setCurrentUser } from "../../redux/user/user.action";
 
 const ProfilePage = ({ currentUser, authState ,currentPosts,updatePosts ,currentUserObj,setCurrentUser}) => {
 
-
+  
   let location = useLocation()
   const handlePostDelete = async (id) => {
     // console.log("deleting post" + id);
