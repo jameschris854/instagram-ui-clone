@@ -39,7 +39,7 @@ const UserProfilePage = ({ authState }) => {
       <div className="profile-page-container">
         <div className="stats-container">
           <div className="profile-pic">
-            <img src={process.env.REACT_APP_SERVER_URL+'/img/users/'+ userData.photo} alt="defaultPosts" />
+            <img src={userData.photo} alt="defaultPosts" />
           </div>
           <div className="name">{userData.userName}</div>
           <div></div>
@@ -68,8 +68,6 @@ const UserProfilePage = ({ authState }) => {
               <div className="previewPost" key={post._id}>
                 <img
                   src={
-                    process.env.REACT_APP_SERVER_URL +
-                    "/img/posts/" +
                     post.postImage
                   }
                   alt=""

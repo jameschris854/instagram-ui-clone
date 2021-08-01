@@ -20,7 +20,7 @@ export const Post = ({ imageUrl, proImage, state,userId, userName, caption }) =>
       </div>
       <div className="image">
         <img
-          src={`${process.env.REACT_APP_SERVER_URL}/img/posts/${imageUrl}`}
+          src={`${imageUrl}`}
           alt=""
         />
       </div>

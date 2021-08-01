@@ -117,7 +117,7 @@ const AddPostForm = ({
       </div>
       {!prevImageUrl?null:<img
         className="post-preview-image"
-        src={`${process.env.REACT_APP_SERVER_URL}/img/posts/${prevImageUrl}`}
+        src={`${prevImageUrl}`}
         alt=""
       />}
       <FormInput type="file" onChange={handleFileChange} />

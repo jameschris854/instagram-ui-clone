@@ -44,7 +44,7 @@ const ProfilePage = ({ currentUser, authState ,currentPosts,updatePosts ,current
       <div className="profile-page-container">
         <div className="stats-container">
           <div className="profile-pic">
-            <img src={`${process.env.REACT_APP_SERVER_URL}/img/users/${currentUser.photo}`} alt="" />
+            <img src={`${currentUser.photo}`} alt="" />
           </div>
           {/* TODO CHECK */}
           <div className="name">{currentUser.fullName} <div className='verified-badge' > <img src={``} alt="" /></div> </div>
@@ -74,7 +74,7 @@ const ProfilePage = ({ currentUser, authState ,currentPosts,updatePosts ,current
           ) : (
             currentUser.posts.reverse().map((post) => (
               <div className="previewPost" key={post._id}>
-                <img src={process.env.REACT_APP_SERVER_URL+'/img/posts/'+post.postImage} alt="" />
+                <img src={post.postImage} alt="" />
                 <i
                   className="del-post-btn far fa-trash-alt"
                   onClick={() => handlePostDelete(post._id)}

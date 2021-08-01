@@ -91,8 +91,6 @@ const Header = ({
             <div className="header-image-tab">
               <img
                 src={
-                  process.env.REACT_APP_SERVER_URL +
-                  "/img/users/" +
                   currentUser.photo
                 }
                 alt=""
