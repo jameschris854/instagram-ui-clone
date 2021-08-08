@@ -9,12 +9,12 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage.component";
 import ConfigPage from "./pages/ConfigPage/ConfigPage.component";
 import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage.component";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage.component";
-
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "./components/Loader/Loader.component";
 
-function App({ authState, currentUser, theme }) {
+function App({ authState, currentUser, theme ,loader }) {
   // console.log(currentUser);
 
   if (theme === "dark") {
@@ -48,6 +48,7 @@ function App({ authState, currentUser, theme }) {
 
   return (
     <div className="App">
+      {loader? <Loader /> :null}
       <Switch>
         <Route exact path="/signup" component={SignupPage} />
         <Route exact path="/" component={LoginPage} />
@@ -110,6 +111,7 @@ const mapStateToProps = (state) => ({
   authState: state.auth.authData,
   currentUser: state.user.currentUser.user,
   theme: state.meta.theme,
+  loader: state.meta.loader
 });
 
 export default connect(mapStateToProps)(App);

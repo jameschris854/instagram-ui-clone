@@ -6,13 +6,14 @@ import { setCurrentUser } from "../../redux/user/user.action";
 import { Button } from "../Button/Button.component";
 import FormInput from "../form-input/form-input.component";
 import OR from "../FormOR/FormOr.component";
+import { setLoader } from "../../redux/meta/meta.action"
 
 import {toast} from 'react-toastify'
 
 import "./LoginForm.styles.scss";
 
 
-const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
+const LoginForm = ({setCurrentUser ,setAuthStatus ,setLoader}) => {
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
@@ -42,6 +43,7 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoader(true)
     // console.log(email,password);
     try{
       let newUser =await fetch(`${process.env.REACT_APP_API_URL}/users/login`,{
@@ -55,7 +57,7 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
         })
       })
       let user = await newUser.json()
-    
+
     // console.log(user);
     if(user.token){
       setCurrentUser(user)
@@ -72,6 +74,7 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
     toast.error("login failed:"+err.message,{position:toast.POSITION.TOP_CENTER})
     // console.log('error:' + err.message);
   }
+  setLoader(false)
   };
 
   return (
@@ -131,12 +134,14 @@ const LoginForm = ({setCurrentUser ,setAuthStatus}) => {
 };
 
 const mapStateToProps = (state) => ({
-  authState: state.auth
+  authState: state.auth,
+  loader: state.meta.loader
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-  setAuthStatus:(authState) => dispatch(setAuthState(authState))
+  setAuthStatus:(authState) => dispatch(setAuthState(authState)),
+  setLoader: (loader) => dispatch(setLoader(loader))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

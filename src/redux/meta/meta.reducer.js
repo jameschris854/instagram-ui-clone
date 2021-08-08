@@ -1,6 +1,6 @@
 import metaActionTypes from "./meta.types";
 
-const INITIAL_STATE = { theme: "white", navbarTab: "home" };
+const INITIAL_STATE = { theme: "white", navbarTab: "home" ,loader: false };
 
 const metaReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -14,6 +14,11 @@ const metaReducer = (state = INITIAL_STATE, action) => {
         ...state,
         navbarTab: action.payload,
       };
+    case metaActionTypes.SET_LOADER_STATE:
+      return {
+        ...state,
+        loader: action.payload,
+      }
     default:
       return state;
   }

@@ -9,3 +9,8 @@ export const setTheme = (theme) => ({
     type:metaActionTypes.SET_THEME_DATA,
     payload:theme==='dark'?'white':'dark'
 })
+
+export const setLoader = (loader) => ({
+    type:metaActionTypes.SET_LOADER_STATE,
+    payload: loader
+})
